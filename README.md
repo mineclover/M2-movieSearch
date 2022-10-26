@@ -5,14 +5,14 @@
 #### 과제 기간:
 
 - 수행 기간: 오늘 ~ 2022.11.16(수) 까지
-- 리뷰 기간: 
+- 리뷰 기간:
   - 수강생끼리: 11.17(목) ~ 11.22(화)
   - 리뷰어 1차: 11.17(목) ~ 11.22(화)
   - 리뷰어 2차: 11.28(월) ~ 11.30(수)
-  
+
 #### 제출 방법:
 
-`main` 혹은 다른 사람의 브랜치로 절대 병합하지 않도록 주의하세요!    
+`main` 혹은 다른 사람의 브랜치로 절대 병합하지 않도록 주의하세요!  
 혹시 문제가 발생한 경우, 바로 강사에게 알려주세요!
 
 1. 현재 깃헙 저장소를 클론!
@@ -20,12 +20,12 @@
 3. 과제 수행 후 원격 저장소로 푸시! `git push origin ParkYoungWoong`
 4. 현재 깃헙 저장소에서 `main` 브랜치로 Pull Request 생성하면 제출 완료!
 5. Pull Request 설명을 꼼꼼하게 작성!
-  
+
 ## 요구사항
 
-필수 요구사항은 꼭 달성해야 하는 목표로, 수정/삭제는 불가하고 추가는 가능합니다.    
+필수 요구사항은 꼭 달성해야 하는 목표로, 수정/삭제는 불가하고 추가는 가능합니다.  
 선택 요구사항은 단순 예시로, 자유롭게 추가/수정/삭제해서 구현해보세요.  
-각 요구사항은 달성 후 마크다운에서 `- [x]`로 표시하세요.  
+각 요구사항은 달성 후 마크다운에서 `- [x]`로 표시하세요.
 
 ### :exclamation: 필수
 
@@ -55,32 +55,32 @@ curl https://omdbapi.com/?apikey=7035c60c
 ```
 
 ## 영화 목록 검색
- 
+
 영화 목록은 한 번에 최대 10개까지 검색할 수 있습니다.
 
-파라미터 | 설명 | 기본값
----|---|---
-`s` | 검색할 영화 제목(필수!) |  
-`y` | 검색할 개봉연도, 빈값은 전체 검색 | 
-`page` | 검색할 페이지 번호 | `1`
+| 파라미터 | 설명                              | 기본값 |
+| -------- | --------------------------------- | ------ |
+| `s`      | 검색할 영화 제목(필수!)           |
+| `y`      | 검색할 개봉연도, 빈값은 전체 검색 |
+| `page`   | 검색할 페이지 번호                | `1`    |
 
 요청 코드 예시:
 
 ```js
-async function getMovies(title, year = '', page = 1) {
-  const s = `&s=${title}`
-  const y = `&y=${year}`
-  const p = `&page=${page}`
-  const res = await fetch(`https://omdbapi.com/?apikey=7035c60c${s}${y}${p}`)
-  const json = await res.json()
-  if (json.Response === 'True') {
-    const { Search: movies, totalResults } = json
+async function getMovies(title, year = "", page = 1) {
+  const s = `&s=${title}`;
+  const y = `&y=${year}`;
+  const p = `&page=${page}`;
+  const res = await fetch(`https://omdbapi.com/?apikey=7035c60c${s}${y}${p}`);
+  const json = await res.json();
+  if (json.Response === "True") {
+    const { Search: movies, totalResults } = json;
     return {
       movies,
-      totalResults
-    }
+      totalResults,
+    };
   }
-  return json.Error
+  return json.Error;
 }
 ```
 
@@ -88,16 +88,16 @@ async function getMovies(title, year = '', page = 1) {
 
 ```ts
 interface ResponseValue {
-  Search: Movie[] // 검색된 영화 목록, 최대 10개
-  totalResults: string // 검색된 영화 개수
-  Response: 'True' | 'False' // 요청 성공 여부
+  Search: Movie[]; // 검색된 영화 목록, 최대 10개
+  totalResults: string; // 검색된 영화 개수
+  Response: "True" | "False"; // 요청 성공 여부
 }
 interface Movie {
-  Title: string // 영화 제목
-  Year: string // 영화 개봉연도
-  imdbID: string // 영화 고유 ID
-  Type: string // 영화 타입
-  Poster: string // 영화 포스터 이미지 URL
+  Title: string; // 영화 제목
+  Year: string; // 영화 개봉연도
+  imdbID: string; // 영화 고유 ID
+  Type: string; // 영화 타입
+  Poster: string; // 영화 포스터 이미지 URL
 }
 ```
 
@@ -128,21 +128,23 @@ interface Movie {
 
 단일 영화의 상제정보를 검색합니다.
 
-파라미터 | 설명 | 기본값
----|---|---
-`i` | 검색할 영화 ID(필수!) |
-`plot` | 줄거리 길이 | `short`
+| 파라미터 | 설명                  | 기본값  |
+| -------- | --------------------- | ------- |
+| `i`      | 검색할 영화 ID(필수!) |
+| `plot`   | 줄거리 길이           | `short` |
 
 요청 코드 예시:
 
 ```js
 async function getMovie(id) {
-  const res = await fetch(`https://omdbapi.com/?apikey=7035c60c&i=${id}&plot=full`)
-  const json = await res.json()
-  if (json.Response === 'True') {
-    return json
+  const res = await fetch(
+    `https://omdbapi.com/?apikey=7035c60c&i=${id}&plot=full`
+  );
+  const json = await res.json();
+  if (json.Response === "True") {
+    return json;
   }
-  return json.Error
+  return json.Error;
 }
 ```
 
@@ -150,36 +152,39 @@ async function getMovie(id) {
 
 ```ts
 interface ResponseValue {
-  Title: string // 영화 제목
-  Year: string // 영화 개봉연도
-  Rated: string // 영화 등급
-  Released: string // 영화 개봉일
-  Runtime: string // 영화 상영시간
-  Genre: string // 영화 장르
-  Director: string // 영화 감독
-  Writer: string // 영화 작가
-  Actors: string // 영화 출연진
-  Plot: string // 영화 줄거리
-  Language: string // 영화 언어
-  Country: string // 영화 제작 국가
-  Awards: string // 영화 수상 내역
-  Poster: string // 영화 포스터 이미지 URL
-  Ratings: Rating[] // 영화 평점 정보
-  Metascore: string // 영화 메타스코어
-  imdbRating: string // 영화 IMDB 평점
-  imdbVotes: string // 영화 IMDB 투표 수
-  imdbID: string // 영화 고유 ID
-  Type: string // 영화 타입
-  DVD: string // 영화 DVD 출시일
-  BoxOffice: string // 영화 박스오피스
-  Production: string // 영화 제작사
-  Website: string // 영화 공식 웹사이트
-  Response: string // 요청 성공 여부
+  Title: string; // 영화 제목
+  Year: string; // 영화 개봉연도
+  Rated: string; // 영화 등급
+  Released: string; // 영화 개봉일
+  Runtime: string; // 영화 상영시간
+  Genre: string; // 영화 장르
+  Director: string; // 영화 감독
+  Writer: string; // 영화 작가
+  Actors: string; // 영화 출연진
+  Plot: string; // 영화 줄거리
+  Language: string; // 영화 언어
+  Country: string; // 영화 제작 국가
+  Awards: string; // 영화 수상 내역
+  Poster: string; // 영화 포스터 이미지 URL
+  Ratings: Rating[]; // 영화 평점 정보
+  Metascore: string; // 영화 메타스코어
+  imdbRating: string; // 영화 IMDB 평점
+  imdbVotes: string; // 영화 IMDB 투표 수
+  imdbID: string; // 영화 고유 ID
+  Type: string; // 영화 타입
+  DVD: string; // 영화 DVD 출시일
+  BoxOffice: string; // 영화 박스오피스
+  Production: string; // 영화 제작사
+  Website: string; // 영화 공식 웹사이트
+  Response: string; // 요청 성공 여부
 }
-interface Rating { // 영화 평점 정보
-  Source: string // 평점 제공 사이트
-  Value: string // 평점
+interface Rating {
+  // 영화 평점 정보
+  Source: string; // 평점 제공 사이트
+  Value: string; // 평점
 }
+
+//이번에 api로 json 받아서 json 상하차 .... ㄷㄷㄷ
 ```
 
 ```json
@@ -199,7 +204,7 @@ interface Rating { // 영화 평점 정보
   "Awards": "Won 2 Oscars. 82 wins & 60 nominations total",
   "Poster": "https://m.media-amazon.com/images/M/MV5BMTQ1MjQwMTE5OF5BMl5BanBnXkFtZTgwNjk3MTcyMDE@._V1_SX300.jpg",
   "Ratings": [
-    { "Source": "Internet Movie Database",  "Value": "7.4/10" },
+    { "Source": "Internet Movie Database", "Value": "7.4/10" },
     { "Source": "Rotten Tomatoes", "Value": "90%" },
     { "Source": "Metacritic", "Value": "75/100" }
   ],
