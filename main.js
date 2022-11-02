@@ -1,8 +1,8 @@
 import {React} from './module/simpleReact.js';
-import {HelloMessage} from './module/Hello.js';
-import {MovieSearch,MovieList} from './module/movieSearch.js';
+import { infoBox } from './module/infoBox.js';
+import { MovieList} from './module/movieSearch.js';
 import {sampleStore , movieStore } from './module/data.js';
-import { inputBox } from './module/inputBox.js';
+import { SearchBox , SearchBar } from './module/SearchBar.js';
 
 // 스토어 정의!
 
@@ -21,10 +21,11 @@ class App extends React.Component {
         class : 'center'
       },
       [
-        React.createElement(inputBox),
-        React.createElement(HelloMessage),
-        React.createElement(MovieSearch),
-        React.createElement(MovieList)
+        
+        React.createElement(SearchBox),
+        React.createElement(MovieList),
+        React.createElement(SearchBar),
+        React.createElement(infoBox),
       ]
     )
   }

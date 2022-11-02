@@ -1,7 +1,10 @@
 import {sampleStore , movieStore } from './data.js';
 import {React} from './simpleReact.js';
 
-export class HelloMessage extends React.Component {
+// 상세 페이지
+
+
+export class infoBox extends React.Component {
   constructor(props) {
     super(props)
     sampleStore.subscribe('message', () => {
