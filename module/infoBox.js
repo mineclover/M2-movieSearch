@@ -14,7 +14,7 @@ export class infoBox extends React.Component {
   render() {
     return React.createElement('h1', {
       onclick: event => {
-        console.log(event.target)
+        // 대충 sampleStore.message 바꾸는 명령어
       }
     }, `Hello ${sampleStore.message}?!`)
   }
