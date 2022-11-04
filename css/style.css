@@ -60,7 +60,7 @@ main.center-wrap-column section.list-wrap {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  align-content: center;
+  align-content: flex-start;
   position: absolute;
   height: inherit;
   bottom: 0;
@@ -149,6 +149,17 @@ header:hover {
   outline: 1px solid var(--border-color);
   background: #d2dce6;
   box-shadow: inset 5px 5px 10px var(--outer-shadow), inset -5px -5px 10px var(--outer-light);
+}
+
+article {
+  width: 30%;
+  margin: 1em;
+  background-color: #fff;
+}
+article img.simple {
+  width: 84%;
+  height: 60%;
+  object-fit: cover;
 }
 
 /*# sourceMappingURL=style.css.map */

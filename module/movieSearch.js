@@ -1,6 +1,9 @@
 import {React} from './simpleReact.js';
 import {sampleStore , movieStore } from './data.js';
 
+
+import { naFilter , dumi} from './test.js';
+
 // 검색 엔진 + 렌더링까지
 
 export class MovieListWrap extends React.Component {
@@ -36,15 +39,7 @@ class MovieList extends React.Component {
       {
         class : 'list-wrap'
       }, 
-      movieStore.movies.map(movie => {
-        return React.createElement('article', {
-          'data-id' : movie.imdbID
-        },
-        [
-          React.createElement('img', { src: movie.Poster }),
-          React.createElement('h3', null, movie.Title)
-        ])
-      })
+      movieStore.movies.map(naFilter)
     )
   }
 }

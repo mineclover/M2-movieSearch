@@ -70,7 +70,7 @@ main.center-wrap-column {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    align-content: center;
+    align-content: flex-start;
     position: absolute;
     height: inherit;
     bottom: 0;
@@ -200,4 +200,15 @@ header:hover {
 }
 
 
+// 이미지 비율 42 30 , 21 , 15 , 7 : 5
 
+article {
+  width: 30%;
+  margin: 1em;
+  background-color: #fff;
+  img.simple {
+    width: 84%;
+    height: 60%;
+    object-fit: cover;
+  }
+}
