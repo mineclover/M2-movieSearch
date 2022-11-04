@@ -152,14 +152,49 @@ header:hover {
 }
 
 article {
-  width: 30%;
+  width: 15vw;
+  height: 21vw;
   margin: 1em;
   background-color: #fff;
+  border-radius: 1em;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
+  transition-duration: 0.5s;
+  transition-property: box-shadow, transform;
+}
+article:hover {
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  transform: scale(0.95);
+  transition-duration: 0.5s;
+  transition-property: box-shadow, transform;
 }
 article img.simple {
-  width: 84%;
-  height: 60%;
+  border-radius: 1em;
+  margin: 8% 0;
+  width: 85%;
+  height: 79%;
   object-fit: cover;
+  box-shadow: 4 4px 10px rgba(0, 0, 0, 0.3);
+}
+article .movie,
+article .series,
+article .episode {
+  width: 3em;
+  height: 3em;
+  position: absolute;
+  background-image: url(./img/no.png);
+}
+article .movie {
+  background-image: url(./img/no.png);
+}
+article span.title {
+  width: 84%;
+  margin: 0 8% 8% 8%;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /*# sourceMappingURL=style.css.map */

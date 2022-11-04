@@ -95,7 +95,7 @@ const dumi = {
   "Language": "English, Norwegian",
   "Country": "United States",
   "Awards": "",
-  "Poster": "./img/no.png",
+  Poster: "./img/no.png",
   "Ratings": [
     { "Source": "Internet Movie Database", "Value": "0/10" },
     { "Source": "Rotten Tomatoes", "Value": "0%" },
@@ -104,7 +104,7 @@ const dumi = {
   "imdbRating": "0.0",
   "imdbVotes": "0.0",
   "imdbID": "tt2294629",
-  "Type": "movie",
+  Type: "movie",
   "DVD": "18 Mar 2014",
   "BoxOffice": "$400,953,009",
   "Production": "N/A",
@@ -123,9 +123,19 @@ const naFilter = mv => {
   [
     React.createElement('img', { 
       src: poster,
-      class : "simple"
+      class : "simple",
+      onerror: event => {
+        console.log("다른콜백이 없어서 바로 콜스택들어가서 실행되버림 그래서 동시실행되는? 문제로 충돌났었다 콘솔로그 하나만 넣어도 해결됨 대체제 있으면 추가");
+        event.target.src = "./img/no.png"
+      }
     }),
-    React.createElement('h3', null, mv.Title)
+    React.createElement('span', {
+      class : "title"
+    }, mv.Title),
+    React.createElement('div', {
+      src : poster,
+      class : `${mv.Type}`
+    })
   ])
 }
 
