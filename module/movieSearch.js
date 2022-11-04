@@ -38,7 +38,7 @@ class MovieList extends React.Component {
       }, 
       movieStore.movies.map(movie => {
         return React.createElement('article', {
-          'data-id' : movie.Title
+          'data-id' : movie.imdbID
         },
         [
           React.createElement('img', { src: movie.Poster }),
