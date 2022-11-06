@@ -57,12 +57,13 @@ main.center-wrap-column {
 }
 main.center-wrap-column section.list-wrap {
   display: flex;
+  padding: 4em 0;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   align-content: flex-start;
   position: absolute;
-  height: inherit;
+  height: calc(100% - 12em);
   bottom: 0;
   width: calc(100% - 4em);
   background-color: #fff;
@@ -80,6 +81,7 @@ main.center-wrap-column section.list-wrap::-webkit-scrollbar {
 }
 main.center-wrap-column section.list-wrap::-webkit-scrollbar-thumb {
   background: var(--font-color); /* 스크롤바의 색상 */
+  border-radius: 0 1em 0 1em;
 }
 main.center-wrap-column section.list-wrap::-webkit-scrollbar-track {
   background: transparent; /*스크롤바 뒷 배경 색상*/
@@ -147,8 +149,10 @@ main.center-wrap-column section.list-wrap article.select {
   transition-property: box-shadow, transform, background-color;
 }
 
-header {
+header.center-wrap-column {
   position: fixed;
+  display: flex;
+  flex-direction: row;
   top: -3em;
   width: var(--world-width);
   height: 160px;
@@ -159,7 +163,7 @@ header {
   -webkit-backdrop-filter: blur(3px);
   border: 1px solid rgba(255, 255, 255, 0.45);
   transition-duration: 1s;
-  transition-property: transform, background-color box-shadow;
+  transition-property: transform, background-color, box-shadow;
 }
 
 header:hover {
@@ -167,7 +171,7 @@ header:hover {
   background-color: rgba(0, 255, 255, 0.5);
   transition-duration: 1s;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition-property: transform, background-color box-shadow;
+  transition-property: transform, background-color, box-shadow;
 }
 
 .check {
@@ -212,6 +216,43 @@ header:hover {
   outline: 1px solid var(--border-color);
   background: #d2dce6;
   box-shadow: inset 5px 5px 10px var(--outer-shadow), inset -5px -5px 10px var(--outer-light);
+}
+
+section.info-box {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 10%;
+  background-color: #fff;
+  border: 2px solid #999;
+  box-shadow: 1px -2px 4px rgba(0, 0, 0, 0.3);
+}
+section.info-box div.center-wrap-column {
+  width: var(--world-width);
+  height: 100%;
+  background-color: #d9ac4a;
+  flex-direction: row;
+}
+section.info-box div.center-wrap-column .left {
+  width: 20%;
+  height: 100%;
+  margin: 0 1em;
+  background-color: #b3bbc4;
+}
+section.info-box div.center-wrap-column .right {
+  width: 100%;
+  height: 100%;
+  margin: 0 1em;
+  background-color: #ce9196;
+  flex-direction: column;
+  text-align: right;
+  justify-content: flex-start;
+}
+section.info-box div.center-wrap-column .right .simple-top {
+  margin: 0.5em 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffca57;
 }
 
 /*# sourceMappingURL=style.css.map */

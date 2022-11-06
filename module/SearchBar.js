@@ -11,14 +11,21 @@ export class HeaderArea extends React.Component {
     return React.createElement(
       'header',
       {
-        class : 'center-wrap-column'
+        class : 'center-wrap-column',
+        onclick : searchFoucs
       },
       [
-        React.createElement(SearchBox)
+        React.createElement(SearchBox),
+        React.createElement(SearchBar),
       ]
     )
   }
 }
+
+const searchFoucs = e => { 
+
+}
+
 
 export class SearchBox extends React.Component {
   constructor() {
@@ -32,7 +39,7 @@ export class SearchBox extends React.Component {
       },
       [
         React.createElement(MovieSearch),
-        React.createElement(SearchBar),
+        
       ]
     )
   }

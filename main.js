@@ -1,7 +1,7 @@
 import {React} from './module/simpleReact.js';
 import { infoBox } from './module/infoBox.js';
 import { MovieListWrap } from './module/movieSearch.js';
-import {sampleStore , movieStore } from './module/data.js';
+import {sampleStore , movieStore ,bottomStore } from './module/data.js';
 import { HeaderArea } from './module/SearchBar.js';
 
 // 스토어 정의!
@@ -12,7 +12,7 @@ import { HeaderArea } from './module/SearchBar.js';
 class App extends React.Component {
   constructor(props) {
     super(props)
-    sampleStore.message = 'A'
+    bottomStore.imdbID = 'tt2294629'
   }
   render() {
     return React.createElement(
@@ -24,7 +24,7 @@ class App extends React.Component {
         
         React.createElement(MovieListWrap),
         
-        // React.createElement(infoBox),
+        React.createElement(infoBox),
         React.createElement(HeaderArea),
       ]
     )

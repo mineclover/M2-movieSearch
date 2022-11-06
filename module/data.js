@@ -44,4 +44,4 @@ const movieStore = new React.Store({
   movies: []
 })
 
-export {sampleStore , movieStore }
+export {sampleStore , movieStore , bottomStore}

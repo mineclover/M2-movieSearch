@@ -45,4 +45,5 @@ sass 는 글로벌로 설치
 
 ## 간단 설명
 
-- movieSerch > test
+- 리스트 구성 : movieSerch > test
+-
