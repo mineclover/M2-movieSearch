@@ -118,7 +118,8 @@ const naFilter = mv => {
 
   return React.createElement('article', {
     'data-id' : mv.imdbID,
-    class : "center-wrap-column"
+    class : "center-wrap-column",
+    onclick: getID
   },
   [
     React.createElement('img', { 
@@ -133,10 +134,31 @@ const naFilter = mv => {
       class : "title"
     }, mv.Title),
     React.createElement('div', {
-      src : poster,
       class : `${mv.Type}`
-    })
+    },[
+      `${mv.Type}`
+    ])
   ])
 }
+
+// article 
+const getID = e => { 
+  removeSelect();
+  e = e.target
+  if (e.tagName !== 'ARTICLE') e = e.parentElement;
+    console.log(e.dataset.id);
+  e.classList.add('select');
+
+  
+  
+};
+
+
+const removeSelect = ()=> {
+  document.querySelectorAll('section.list-wrap article').forEach( el => { el.classList.remove('select') } );
+  // 화살표 함수를 중괄호로 묶으면 리턴 값 없다
+  // All 로 해야 리스트로 반환
+}
+
 
 export {naFilter, dumi};

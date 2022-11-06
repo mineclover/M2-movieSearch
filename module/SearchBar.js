@@ -1,5 +1,5 @@
 import {React} from './simpleReact.js';
-import {sampleStore , movieStore } from './data.js';
+import { movieStore } from './data.js';
 
 // 검색창 
 
@@ -31,7 +31,9 @@ export class SearchBox extends React.Component {
         class : 'check'
       },
       [
-        React.createElement(MovieSearch)]
+        React.createElement(MovieSearch),
+        React.createElement(SearchBar),
+      ]
     )
   }
 }
@@ -82,7 +84,7 @@ class MovieSearchs extends React.Component {
   }
 }
 
-export class SearchBar extends React.Component {
+class SearchBar extends React.Component {
   constructor() {
     super()
   }
@@ -94,7 +96,7 @@ export class SearchBar extends React.Component {
         'input', 
         {
           placeholder: '검색어를 입력하세요!',
-          onchange: event => { sampleStore.message = event.target.value }
+          onchange: event => { sampleStore.count = event.target.value }
         }
       )
     )

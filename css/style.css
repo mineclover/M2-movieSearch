@@ -67,6 +67,8 @@ main.center-wrap-column section.list-wrap {
   width: calc(100% - 4em);
   background-color: #fff;
   flex-wrap: wrap;
+  row-gap: 3em;
+  column-gap: 2em;
   border-radius: 1em 1em 0 0;
   background: #d2dce6;
   box-shadow: inset 5px 5px 10px var(--outer-shadow), inset -5px -5px 10px var(--outer-light);
@@ -78,10 +80,71 @@ main.center-wrap-column section.list-wrap::-webkit-scrollbar {
 }
 main.center-wrap-column section.list-wrap::-webkit-scrollbar-thumb {
   background: var(--font-color); /* 스크롤바의 색상 */
-  border-radius: 0 1em 1em 0;
 }
 main.center-wrap-column section.list-wrap::-webkit-scrollbar-track {
   background: transparent; /*스크롤바 뒷 배경 색상*/
+}
+main.center-wrap-column section.list-wrap article {
+  position: relative;
+  width: 20%;
+  min-width: 200px;
+  background-color: #fff;
+  border-radius: 1em;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
+  transition-duration: 0.5s;
+  transition-property: box-shadow, transform, background-color;
+}
+main.center-wrap-column section.list-wrap article:hover, main.center-wrap-column section.list-wrap article.select:hover {
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  transform: scale(0.95);
+  transition-duration: 0.5s;
+  transition-property: box-shadow, transform, background-color;
+}
+main.center-wrap-column section.list-wrap article img.simple {
+  border-radius: 1em;
+  margin: 8% 0;
+  width: 85%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+}
+main.center-wrap-column section.list-wrap article .movie,
+main.center-wrap-column section.list-wrap article .series,
+main.center-wrap-column section.list-wrap article .episode {
+  z-index: 10;
+  position: absolute;
+  top: -0.8em;
+  left: 1em;
+  display: flex;
+  align-items: center;
+}
+main.center-wrap-column section.list-wrap article .movie,
+main.center-wrap-column section.list-wrap article .series,
+main.center-wrap-column section.list-wrap article .episode #text {
+  font-size: 24px;
+  text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
+}
+main.center-wrap-column section.list-wrap article .movie::before {
+  content: "";
+  margin-right: 1em;
+  background-color: #d9ac4a;
+  width: 3em;
+  height: 3em;
+}
+main.center-wrap-column section.list-wrap article span.title {
+  width: 84%;
+  margin: 0 8% 8% 8%;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+main.center-wrap-column section.list-wrap article.select {
+  background-color: #ffca57;
+  box-shadow: 10px 10px 20px #d9ac4a, -10px -10px 20px #ffe864;
+  transition-duration: 0.5s;
+  transition-property: box-shadow, transform, background-color;
 }
 
 header {
@@ -149,52 +212,6 @@ header:hover {
   outline: 1px solid var(--border-color);
   background: #d2dce6;
   box-shadow: inset 5px 5px 10px var(--outer-shadow), inset -5px -5px 10px var(--outer-light);
-}
-
-article {
-  width: 15vw;
-  height: 21vw;
-  margin: 1em;
-  background-color: #fff;
-  border-radius: 1em;
-  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
-  transition-duration: 0.5s;
-  transition-property: box-shadow, transform;
-}
-article:hover {
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
-  transform: scale(0.95);
-  transition-duration: 0.5s;
-  transition-property: box-shadow, transform;
-}
-article img.simple {
-  border-radius: 1em;
-  margin: 8% 0;
-  width: 85%;
-  height: 79%;
-  object-fit: cover;
-  box-shadow: 4 4px 10px rgba(0, 0, 0, 0.3);
-}
-article .movie,
-article .series,
-article .episode {
-  width: 3em;
-  height: 3em;
-  position: absolute;
-  background-image: url(./img/no.png);
-}
-article .movie {
-  background-image: url(./img/no.png);
-}
-article span.title {
-  width: 84%;
-  margin: 0 8% 8% 8%;
-  font-size: 16px;
-  text-align: center;
-  font-weight: 700;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /*# sourceMappingURL=style.css.map */

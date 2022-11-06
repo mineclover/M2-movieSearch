@@ -77,33 +77,108 @@ main.center-wrap-column {
     width: calc(100% - 4em);
     background-color: #fff;
     flex-wrap: wrap;
+    
+    row-gap: 3em;
+    column-gap: 2em;
+    
     border-radius: 1em 1em 0 0;
     background: #d2dce6;
     box-shadow: inset 5px 5px 10px var(--outer-shadow),
                 inset -5px -5px 10px var(--outer-light);
     overflow: hidden;
     overflow-y: scroll;
-
     
     &::-webkit-scrollbar {
       width: 1em;  /* 스크롤바의 너비 */
-  }
-  
+    }
     &::-webkit-scrollbar-thumb {
       background: var(--font-color); /* 스크롤바의 색상 */
-      border-radius: 0 1em 1em 0;
-
     }
-  
     &::-webkit-scrollbar-track {
       background: transparent;  /*스크롤바 뒷 배경 색상*/
-  
     }
+    // 이미지 비율 42 30 , 21 , 15 , 7 : 5
+    // article 
 
+    article {
+      position: relative;
+      
+      //height: 21vw; 크기 작아질 때 글씨를 가려서
+      width: 20%;
+      min-width: 200px;
+      
+      background-color: #fff;
+      border-radius: 1em;
+      box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
+      transition-duration: 0.5s;
+      transition-property: box-shadow , transform, background-color; 
+      
+      &:hover,
+      &.select:hover
+      {
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+        transform: scale(0.95);
+        transition-duration: 0.5s;
+        transition-property: box-shadow , transform, background-color; 
+      }
+      
+      img.simple {
+        border-radius: 1em;
+        margin: 8% 0;
+        width: 85%;
+        aspect-ratio: 2 / 3;
+        object-fit: cover;
+      }
+      .movie,
+      .series,
+      .episode {
+        z-index: 10;
+        position : absolute;
+        top: -0.8em;
+        left: 1em;
+        display: flex;
+        align-items: center;
+        
+        //background-image: url(./img/no.png);
+      }
+      .movie,
+      .series,
+      .episode #text{
+        font-size: 24px;
+        text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
+      }
+      .movie::before{
+        content: "";
+        margin-right: 1em;
+        background-color: #d9ac4a;
+        width: 3em;
+        height: 3em;
+      }
+      
+      
+      span.title{
+        width: 84%;
+        margin: 0 8% 8% 8%;
+        font-size: 16px;
+        text-align: center;
+        font-weight: 700;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+    
+    article.select{
+      
+      
+      background-color: #ffca57;
+      box-shadow:  10px 10px 20px #d9ac4a,
+                  -10px -10px 20px #ffe864;
+    transition-duration: 0.5s;
+    transition-property: box-shadow , transform, background-color; 
+    } 
 
   }
-
-  
 }
 
 header {
@@ -197,61 +272,4 @@ header:hover {
   box-shadow: inset 5px 5px 10px var(--outer-shadow),
               inset -5px -5px 10px var(--outer-light);
 
-}
-
-
-// 이미지 비율 42 30 , 21 , 15 , 7 : 5
-
-article {
-  width: 15vw;
-  height: 21vw;
-  margin: 1em;
-  background-color: #fff;
-  border-radius: 1em;
-  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.3);
-  transition-duration: 0.5s;
-
-  transition-property: box-shadow , transform; 
-  
-  &:hover{
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
-    transform: scale(0.95);
-    transition-duration: 0.5s;
-    transition-property: box-shadow , transform; 
-  }
-  
-  
-  img.simple {
-    border-radius: 1em;
-    margin: 8% 0;
-    width: 85%;
-    height: 79%;
-    object-fit: cover;
-    box-shadow: 4 4px 10px rgba(0, 0, 0, 0.3);
-  }
-  .movie,
-  .series,
-  .episode {
-    width: 3em;
-    height: 3em;
-    position : absolute;
-    background-image: url(./img/no.png);
-
-  }
-  .movie {
-    background-image: url(./img/no.png);
-  }
-
-  
-  
-  span.title{
-    width: 84%;
-    margin: 0 8% 8% 8%;
-    font-size: 16px;
-    text-align: center;
-    font-weight: 700;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 }

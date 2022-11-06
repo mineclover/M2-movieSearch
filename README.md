@@ -25,6 +25,11 @@
 - 있어야하는데 비어있는 Json data = "N/A"
 - 검색이 안됬을 경우 `Error : "Too many results."` , `Response` 값은 항상 들어온다
 
+## 11/06
+
+- 영상이 어떤 tpye인지 표시 movie, series, episode > 작업중
+- 영상 선택 구현
+
 # 세팅정보
 
 ## 처음 깔 때
@@ -37,3 +42,7 @@ sass 는 글로벌로 설치
 `sass --watch scss/style.scss css/style.css`
 로컬 서버 : `npm run dev`
 번들링 파일 빌드 : `npm run build`
+
+## 간단 설명
+
+- movieSerch > test

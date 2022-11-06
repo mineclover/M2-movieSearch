@@ -2,7 +2,7 @@ import {React} from './module/simpleReact.js';
 import { infoBox } from './module/infoBox.js';
 import { MovieListWrap } from './module/movieSearch.js';
 import {sampleStore , movieStore } from './module/data.js';
-import { HeaderArea , SearchBar } from './module/SearchBar.js';
+import { HeaderArea } from './module/SearchBar.js';
 
 // 스토어 정의!
 
@@ -23,7 +23,7 @@ class App extends React.Component {
       [
         
         React.createElement(MovieListWrap),
-        // React.createElement(SearchBar),
+        
         // React.createElement(infoBox),
         React.createElement(HeaderArea),
       ]
