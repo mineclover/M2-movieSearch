@@ -41,9 +41,37 @@ class left extends React.Component {
   render() {
     return React.createElement('div', {
       class : 'left center-wrap-column',
-    }, `Hello?!`)
+    }, [ 
+      React.createElement(leftImg),
+      React.createElement(leftTime)
+    ])
   }
 }
+class leftImg extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return React.createElement('img', {
+      class : 'infoImg',
+      src : `${bottomStore.Poster}`
+    })
+  }
+}
+
+class leftTime extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return React.createElement('div', {
+      class : 'run-time',
+    }, `${bottomStore.Runtime}`)
+  }
+}
+
+
+
 class right extends React.Component {
   constructor(props) {
     super(props)
@@ -51,29 +79,65 @@ class right extends React.Component {
   render() {
     return React.createElement('div', {
       class : 'right center-wrap-column',
-    }, [React.createElement(rightSection) , React.createElement(rightSection) ])
+    }, [React.createElement(rightTop) , React.createElement(rightBottom) ])
   }
 }
 
 
-class rightSection extends React.Component {
+class rightTop extends React.Component {
   constructor(props) {
     super(props)
   }
   render() {
     return React.createElement('section', {
-      class : 'simple-top',
-    }, `simple top`)
+      class : 'right-top',
+    }, [React.createElement(infoTitle),React.createElement(infoYear)])
   }
 }
+
 
 class infoTitle extends React.Component {
   constructor(props) {
     super(props)
   }
   render() {
-    return React.createElement('h1', {
+    return React.createElement('div', {
       class : 'title',
-    }, `Hello?!`)
+    }, `${bottomStore.Title}`)
+  }
+}
+
+class infoYear extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return React.createElement('div', {
+      class : 'Year',
+    }, `${bottomStore.Year}`)
+  }
+}
+
+
+class rightBottom extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return React.createElement('section', {
+      class : 'right-bottom',
+    }, [React.createElement(infoPlot)])
+  }
+}
+
+
+class infoPlot extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return React.createElement('div', {
+      class : 'Plot',
+    },`${bottomStore.Plot}`)
   }
 }
