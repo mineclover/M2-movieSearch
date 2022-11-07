@@ -44,4 +44,43 @@ const movieStore = new React.Store({
   movies: []
 })
 
-export {sampleStore , movieStore , bottomStore}
+const searchForm = new React.Store({
+  year : "",
+  page : 1,
+  type : ""
+})
+
+
+
+const transmission = (movie) => {
+  bottomStore.Title = movie.Title;
+  bottomStore.Year = movie.Year;
+  bottomStore.Rated = movie.Rated;
+  bottomStore.Released = movie.Released;
+  bottomStore.Runtime = movie.Runtime;
+  bottomStore.Genre = movie.Genre;
+  bottomStore.Director = movie.Director;
+  bottomStore.Writer = movie.Writer;
+  bottomStore.Actors = movie.Actors;
+  bottomStore.Plot = movie.Plot;
+  bottomStore.Language = movie.Language;
+  bottomStore.Country = movie.Country;
+  bottomStore.Awards = movie.Awards;
+  bottomStore.Poster = movie.Poster;
+  bottomStore.Ratings = movie.Ratings;
+  bottomStore.Metascore = movie.Metascore;
+  bottomStore.imdbRating = movie.imdbRating;
+  bottomStore.imdbVotes = movie.imdbVotes;
+  bottomStore.imdbID = movie.imdbID;
+  bottomStore.Type = movie.Type;
+  bottomStore.DVD = movie.DVD;
+  bottomStore.BoxOffice = movie.BoxOffice;
+  bottomStore.Production = movie.Production;
+  bottomStore.Website = movie.Website;
+  bottomStore.Response = movie.Response;
+}
+
+
+
+
+export {sampleStore , movieStore , bottomStore , transmission , searchForm}

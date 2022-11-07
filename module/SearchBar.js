@@ -1,5 +1,6 @@
 import {React} from './simpleReact.js';
 import { movieStore } from './data.js';
+import {getMovies} from './test.js';
 
 // 검색창 
 
@@ -35,7 +36,7 @@ export class SearchBox extends React.Component {
     return React.createElement(
       'div',
       {
-        class : 'check'
+        class : 'search-box',
       },
       [
         React.createElement(MovieSearch),
@@ -51,21 +52,16 @@ class MovieSearch extends React.Component {
   constructor() {
     super()
   }
-  async getMovies(title) {
-    const res = await fetch(`https://www.omdbapi.com/?apikey=7035c60c&s=${title}`)
-    
   
-    const { Search } = await res.json()
-    console.log(res);
-    movieStore.movies = Search
-  }
+
   render() {
     return React.createElement('input', {
       placeholder: '영화 제목을 검색하세요.',
-      onchange: event => {
-        this.getMovies(event.target.value)
+      onchange: async event => {
+        let { movies } = await getMovies(event.target.value);
+        movieStore.movies = movies;
       },
-      class : ''
+      class : 'search-input'
       
     })
   }
@@ -75,11 +71,6 @@ class MovieSearch extends React.Component {
 class MovieSearchs extends React.Component {
   constructor() {
     super()
-  }
-  async getMovies(title) {
-    const res = await fetch(`https://www.omdbapi.com/?apikey=7035c60c&s=${title}`)
-    const { Search } = await res.json()
-    movieStore.movies = Search
   }
   render() {
     return React.createElement('input', {

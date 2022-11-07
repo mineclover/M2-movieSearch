@@ -43,7 +43,7 @@ class left extends React.Component {
       class : 'left center-wrap-column',
     }, [ 
       React.createElement(leftImg),
-      React.createElement(leftTime)
+      
     ])
   }
 }
@@ -54,6 +54,9 @@ class leftImg extends React.Component {
   render() {
     return React.createElement('img', {
       class : 'infoImg',
+      onerror: event => {
+        event.target.src = "./img/no.png"
+      },
       src : `${bottomStore.Poster}`
     })
   }
@@ -79,7 +82,7 @@ class right extends React.Component {
   render() {
     return React.createElement('div', {
       class : 'right center-wrap-column',
-    }, [React.createElement(rightTop) , React.createElement(rightBottom) ])
+    }, [React.createElement(rightTop) , React.createElement(rightBottom)])
   }
 }
 
@@ -103,7 +106,7 @@ class infoTitle extends React.Component {
   render() {
     return React.createElement('div', {
       class : 'title',
-    }, `${bottomStore.Title}`)
+    }, [`${bottomStore.Title}`,React.createElement(leftTime)])
   }
 }
 
@@ -113,7 +116,7 @@ class infoYear extends React.Component {
   }
   render() {
     return React.createElement('div', {
-      class : 'Year',
+      class : 'year',
     }, `${bottomStore.Year}`)
   }
 }
@@ -137,7 +140,7 @@ class infoPlot extends React.Component {
   }
   render() {
     return React.createElement('div', {
-      class : 'Plot',
+      class : 'plot',
     },`${bottomStore.Plot}`)
   }
 }

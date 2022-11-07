@@ -47,9 +47,10 @@ body {
 }
 
 main.center-wrap-column {
-  position: relative;
+  position: absolute;
+  bottom: 300px;
   width: var(--world-width);
-  height: calc(100% - 4em);
+  height: calc(100% - 300px);
   border-radius: 2em 2em 0 0;
   background: #ffca57;
   box-shadow: 10px 10px 20px #d9ac4a, -10px -10px 20px #ffe864;
@@ -63,8 +64,8 @@ main.center-wrap-column section.list-wrap {
   align-items: center;
   align-content: flex-start;
   position: absolute;
-  height: calc(100% - 12em);
-  bottom: 0;
+  height: calc(100% - 200px);
+  bottom: 20px;
   width: calc(100% - 4em);
   background-color: #fff;
   flex-wrap: wrap;
@@ -88,7 +89,7 @@ main.center-wrap-column section.list-wrap::-webkit-scrollbar-track {
 }
 main.center-wrap-column section.list-wrap article {
   position: relative;
-  width: 20%;
+  width: 10%;
   min-width: 200px;
   background-color: #fff;
   border-radius: 1em;
@@ -127,10 +128,10 @@ main.center-wrap-column section.list-wrap article .episode #text {
 }
 main.center-wrap-column section.list-wrap article .movie::before {
   content: "";
-  margin-right: 1em;
+  margin-right: 0.5em;
   background-color: #d9ac4a;
-  width: 3em;
-  height: 3em;
+  width: 2em;
+  height: 2em;
 }
 main.center-wrap-column section.list-wrap article span.title {
   width: 84%;
@@ -165,10 +166,37 @@ header.center-wrap-column {
   transition-duration: 1s;
   transition-property: transform, background-color, box-shadow;
 }
+header.center-wrap-column .search-box .search-input {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  box-sizing: border-box;
+  border-radius: 2em 0 0 2em;
+  padding: 0.2em;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(6.4px);
+  -webkit-backdrop-filter: blur(3px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 2px 2px rgba(255, 145, 0, 0.7);
+  transition-duration: 1s;
+  transition-property: transform, background-color, box-shadow;
+}
+header.center-wrap-column .search-box .search-input:hover {
+  transition-duration: 1s;
+  transition-property: transform, background-color, box-shadow;
+}
 
 header:hover {
   transform: translateY(5em);
-  background-color: rgba(0, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   transition-duration: 1s;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition-property: transform, background-color, box-shadow;
@@ -222,7 +250,7 @@ section.info-box {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 20%;
+  height: 300px;
   background-color: #fff;
   border: 2px solid #999;
   box-shadow: 1px -2px 4px rgba(0, 0, 0, 0.3);
@@ -236,19 +264,17 @@ section.info-box div.center-wrap-column {
 section.info-box div.center-wrap-column .left {
   width: fit-content;
   height: 90%;
-  margin: 0.5em 0.5em 0.5em 1em;
+  margin: 0 0 1em 1em;
   background-color: #b3bbc4;
   position: relative;
 }
-section.info-box div.center-wrap-column .left .run-time {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
 section.info-box div.center-wrap-column .left img.infoImg {
   height: 100%;
+  aspect-ratio: 2/3;
+  background-color: #999;
 }
 section.info-box div.center-wrap-column .right {
+  position: relative;
   width: 100%;
   height: 100%;
   margin: 0 1em;
@@ -257,13 +283,40 @@ section.info-box div.center-wrap-column .right {
   justify-content: flex-end;
 }
 section.info-box div.center-wrap-column .right .right-top {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: 0.5em 0.5em;
   width: 100%;
-  height: 100%;
+  height: 30%;
   background-color: #5f77ff;
+}
+section.info-box div.center-wrap-column .right .right-top div.title {
+  font-size: 24px;
+  text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
+}
+section.info-box div.center-wrap-column .right .right-top .run-time {
+  position: absolute;
+  bottom: 4px;
+  left: 4px;
+  padding: 0.2em 0.3em;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #999;
+  font-size: 14px;
+  font-weight: bold;
+}
+section.info-box div.center-wrap-column .right .right-top .year {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  padding: 0.2em 0.3em;
+  background-color: #fff;
+  border-radius: 4px;
+  border: 1px solid #999;
+  font-size: 14px;
+  font-weight: bold;
 }
 section.info-box div.center-wrap-column .right .right-bottom {
   display: flex;
@@ -271,8 +324,11 @@ section.info-box div.center-wrap-column .right .right-bottom {
   justify-content: space-between;
   margin: 0.5em 0.5em;
   width: 100%;
-  height: 100%;
+  height: 70%;
   background-color: #5f77ff;
+}
+section.info-box div.center-wrap-column .right .right-bottom .plot {
+  font-style: italic;
 }
 
 /*# sourceMappingURL=style.css.map */

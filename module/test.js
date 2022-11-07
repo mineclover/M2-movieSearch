@@ -1,13 +1,13 @@
 import {React} from './simpleReact.js';
-import {sampleStore , movieStore } from './data.js';
+import {sampleStore , movieStore ,transmission, bottomStore , searchForm } from './data.js';
 
 
 // 테스트 사이드
-async function getMovies(title, year = "", page = 1,type = "") {
+export async function getMovies(title) {
   const s = `&s=${title}`;
-  const y = `&y=${year}`;
-  const p = `&page=${page}`;
-  const t = `&type=${type}`;
+  const y = `&y=${searchForm.year}`;
+  const p = `&page=${searchForm.page}`;
+  const t = `&type=${searchForm.type}`;
   console.log(`https://omdbapi.com/?apikey=7035c60c${s}${y}${p}${t}`);
   const res = await fetch(`https://omdbapi.com/?apikey=7035c60c${s}${y}${p}${t}`);
   console.log(await fetch(`https://omdbapi.com/?apikey=7035c60c${s}${y}${p}${t}`));
@@ -18,6 +18,7 @@ async function getMovies(title, year = "", page = 1,type = "") {
   console.log(json.Response);
   if (json.Response === "True") {
     const { Search: movies, totalResults } = json;
+    
     return {
       movies,
       totalResults,
@@ -39,8 +40,6 @@ async function deepInfo(id) {
 }
 
 
-
-
 (async()=> {
 
   // const a = await getMovies('Fazoni i Fore 2');
@@ -50,6 +49,7 @@ async function deepInfo(id) {
   console.log("test : "+b);
   console.log(a);
   console.log(b);
+  console.log(await deepInfo('tt0059578'));
 
   const id = await a.movies[0].imdbID;
   
@@ -83,41 +83,46 @@ async function deepInfo(id) {
 // 대체 미이미지 셋
 // 대충 이렇다는 느낌만
 const dumi = {
+  Title: "Unknown",
   Year: "Unknown",
-  "Rated": "PG",
-  "Released": "27 Nov 2013",
-  "Runtime": "102 min",
-  "Genre": "Animation, Adventure, Comedy",
-  "Director": "Unknown",
-  "Writer": "Unknown",
-  "Actors": "Unknown",
-  "Plot": "When the newly crowned Queen Elsa accidentally uses her power to turn things into ice to curse her home in infinite winter, her sister Anna teams up with a mountain man, his playful reindeer, and a snowman to change the weather co...",
-  "Language": "English, Norwegian",
-  "Country": "United States",
-  "Awards": "",
+  Rated: "PG",
+  Released: "27 Nov 2013",
+  Runtime: "102 min",
+  Genre: "Animation, Adventure, Comedy",
+  Director: "Unknown",
+  Writer: "Unknown",
+  Actors: "Unknown",
+  Plot: "When the newly crowned Queen Elsa accidentally uses her power to turn things into ice to curse her home in infinite winter, her sister Anna teams up with a mountain man, his playful reindeer, and a snowman to change the weather co...",
+  Language: "English, Norwegian",
+  Country: "United States",
+  Awards: "N/A",
   Poster: "./img/no.png",
-  "Ratings": [
-    { "Source": "Internet Movie Database", "Value": "0/10" },
-    { "Source": "Rotten Tomatoes", "Value": "0%" },
-    { "Source": "Metacritic", "Value": "0/100" }
+  Ratings: [
+    { Source: "Internet Movie Database", Value: "0/10" },
+    { Source: "Rotten Tomatoes", Value: "0%" },
+    { Source: "Metacritic", Value: "0/100" }
   ],
-  "imdbRating": "0.0",
-  "imdbVotes": "0.0",
-  "imdbID": "tt2294629",
+  imdbRating: "0.0",
+  imdbVotes: "0.0",
+  imdbID: "tt2294629",
   Type: "movie",
-  "DVD": "18 Mar 2014",
-  "BoxOffice": "$400,953,009",
-  "Production": "N/A",
-  "Website": "N/A"
+  DVD: "18 Mar 2014",
+  BoxOffice: "$400,953,009",
+  Production: "N/A",
+  Website: "N/A"
 }
+
+
 
 
 const naFilter = mv => {
 
-  const poster = mv.Poster === "N/A" ? dumi.Poster : mv.Poster ;
+  //const poster = mv.Poster === "N/A" ? dumi.Poster : mv.Poster ;
+  const poster = mv.Poster;
 
   return React.createElement('article', {
     'data-id' : mv.imdbID,
+    alt : `영화 선택 : ${mv.Title}`,
     class : "center-wrap-column",
     onclick: getID
   },
@@ -125,14 +130,15 @@ const naFilter = mv => {
     React.createElement('img', { 
       src: poster,
       class : "simple",
+      alt : `${mv.Title}의 포스터`,
       onerror: event => {
-        console.log("다른콜백이 없어서 바로 콜스택들어가서 실행되버림 그래서 동시실행되는? 문제로 충돌났었다 콘솔로그 하나만 넣어도 해결됨 대체제 있으면 추가");
         event.target.src = "./img/no.png"
       },
       
     }),
     React.createElement('span', {
-      class : "title"
+      class : "title",
+      alt : `영화 제목 : ${mv.Title}`
     }, mv.Title),
     React.createElement('div', {
       class : `${mv.Type}`
@@ -143,15 +149,24 @@ const naFilter = mv => {
 }
 
 // article 
-const getID = e => { 
+const getID = async e => { 
   removeSelect();
   e = e.target
   if (e.tagName !== 'ARTICLE') e = e.parentElement;
-    console.log(e.dataset.id);
+  console.log(e.dataset.id);
   e.classList.add('select');
+  const id = e.dataset.id;
 
-  
-  
+  // movies 의 기존 데이터에 데이터를 추가한다
+  // 기존 데이터에 추가하는 이유는 기존 데이터를 유지하면서 새로운 데이터를 추가하기 위해서이다
+
+  movieStore.movies.forEach(async movie => {
+    if (movie.imdbID === id) {
+      console.log(movie);
+      movie = await deepInfo(id);
+      transmission(movie);
+    }
+  });
 };
 
 
