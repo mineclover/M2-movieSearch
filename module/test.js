@@ -167,6 +167,7 @@ const getID = async e => {
       transmission(movie);
     }
   });
+  
 };
 
 
