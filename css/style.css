@@ -330,7 +330,7 @@ section.info-box div.center-wrap-column .right .right-bottom {
 section.info-box div.center-wrap-column .right .right-bottom .plot {
   font-style: italic;
 }
-section.info-box .loading {
+section.info-box .bottom-loading {
   position: absolute;
   top: 0;
   right: 0;
@@ -341,21 +341,28 @@ section.info-box .loading {
   justify-content: center;
   align-items: center;
   align-content: center;
+  text-align: center;
 }
-
-div.h-loader {
+section.info-box .bottom-loading div.h-loader {
   display: block;
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
   color: orange;
   z-index: 10;
+}
+section.info-box .bottom-loading div.h-loader:after {
+  content: "loading...";
+  display: block;
+  margin-top: 1em;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 svg {
   display: block;
   animation: progress-circular-rotate 1.4s linear infinite;
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
 }
 
 :not(svg) {

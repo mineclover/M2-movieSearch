@@ -419,7 +419,7 @@ section.info-box{
     }
   }
 
-  .loading{
+  .bottom-loading{
     position: absolute;
     top: 0;
     right: 0;
@@ -430,8 +430,24 @@ section.info-box{
     justify-content: center;
     align-items: center;
     align-content: center;
+    text-align: center;
 
+    div.h-loader{
+      display: block;
+      width: 60px;
+      height: 60px;
+      color: orange;
+      z-index: 10;
+      
+    }
     
+    div.h-loader:after{
+      content: 'loading...';
+      display: block;
+      margin-top: 1em;
+      font-size: 16px;
+      font-weight: bold;
+    }
     
 
 
@@ -440,18 +456,13 @@ section.info-box{
 
 
 
-div.h-loader{
-  display: block;
-  width: 100px;
-  height: 100px;
-  color: orange;
-  z-index: 10;
-}
+
+
 svg{
   display: block;
   animation: progress-circular-rotate 1.4s linear infinite;
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
 }
 :not(svg) {
   transform-origin: 0px 0px;

@@ -80,44 +80,10 @@ async function deepInfo(id) {
 // })
 
 
-// 대체 미이미지 셋
-// 대충 이렇다는 느낌만
-const dumi = {
-  Title: "Unknown",
-  Year: "Unknown",
-  Rated: "PG",
-  Released: "27 Nov 2013",
-  Runtime: "102 min",
-  Genre: "Animation, Adventure, Comedy",
-  Director: "Unknown",
-  Writer: "Unknown",
-  Actors: "Unknown",
-  Plot: "When the newly crowned Queen Elsa accidentally uses her power to turn things into ice to curse her home in infinite winter, her sister Anna teams up with a mountain man, his playful reindeer, and a snowman to change the weather co...",
-  Language: "English, Norwegian",
-  Country: "United States",
-  Awards: "N/A",
-  Poster: "./img/no.png",
-  Ratings: [
-    { Source: "Internet Movie Database", Value: "0/10" },
-    { Source: "Rotten Tomatoes", Value: "0%" },
-    { Source: "Metacritic", Value: "0/100" }
-  ],
-  imdbRating: "0.0",
-  imdbVotes: "0.0",
-  imdbID: "tt2294629",
-  Type: "movie",
-  DVD: "18 Mar 2014",
-  BoxOffice: "$400,953,009",
-  Production: "N/A",
-  Website: "N/A"
-}
-
-
 
 
 const naFilter = mv => {
 
-  //const poster = mv.Poster === "N/A" ? dumi.Poster : mv.Poster ;
   const poster = mv.Poster;
 
   return React.createElement('article', {
@@ -134,6 +100,9 @@ const naFilter = mv => {
       onerror: event => {
         event.target.src = "./img/no.png"
       },
+      onclick: () => {
+        document.querySelector('.bottom-loading').style.display = 'flex';
+      }
       
     }),
     React.createElement('span', {
@@ -178,4 +147,4 @@ const removeSelect = ()=> {
 }
 
 
-export {naFilter, dumi};
+export {naFilter};

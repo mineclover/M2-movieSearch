@@ -7,6 +7,8 @@ const React = {
     let el
     
     // 컴포넌트인 경우!
+    // 클래스의 경우 클래스의 렌더러를 실행한다
+    // 그 값을 el 에 넣는다 나중에 다 반환한다
     if (typeof type === 'function') { // 컴포넌트 클래스 확인!
 
       console.log(type, typeof type);
@@ -39,13 +41,16 @@ const React = {
   
     // 자식 요소가 포함된 경우!
     if (childNodes !== null && childNodes !== undefined) {
-      Array.isArray(childNodes)
+
+      if (childNodes.html !== undefined) {
+        el.innerHTML = childNodes.html;
+      }
+      else {
+        Array.isArray(childNodes)
         ? el.append(...childNodes)
         : el.append(childNodes)
-
-        
+      }
     }
-  
     return el
   },
   

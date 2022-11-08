@@ -3,7 +3,7 @@ import {sampleStore , movieStore } from './data.js';
 
 
 
-import { naFilter , dumi} from './test.js';
+import { naFilter} from './test.js';
 
 // 검색 엔진 + 렌더링까지
 

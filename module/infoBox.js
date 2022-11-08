@@ -16,7 +16,7 @@ export class infoBox extends React.Component {
       class : 'info-box center-wrap-column',
       onclick: event => {
         console.log('눌림')
-      }
+      },
     },
     [
       `Hello?!`,
@@ -41,24 +41,22 @@ class Loading extends React.Component {
     super(props)
   }
   render() {
-    return React.createElement('div', {
-      class : 'loading',
-    },[
-        React.createElement('div',{
-          class : 'h-loader'
-        },
-          React.createElement('svg',{
-            "viewBox": "22 22 46 46"
-          },
-            React.createElement('circle',{
 
-              },""
-            )
-          )
+    const component = React.createElement('div', {
+      class : 'bottom-loading',
+    },
+      {
+        html : `
+<div class='h-loader'>
+  <svg viewBox="22 22 46 46">
+    <circle cx="45" cy="45" r="20" stroke-width="6" stroke-dasharray="125" stroke-dashoffset="125px"></circle>
+  </svg>
+</div>`
+    })
+      
+    
 
-        )
-        ,`Loading...`
-      ] )
+    return component;
   }
 }
 
@@ -85,6 +83,9 @@ class leftImg extends React.Component {
       onerror: event => {
         event.target.src = "./img/no.png"
       },
+      onload : () => {
+        document.querySelector('.bottom-loading').style.display = 'none'
+      },
       src : `${bottomStore.Poster}`
     })
   }
@@ -97,6 +98,7 @@ class leftTime extends React.Component {
   render() {
     return React.createElement('div', {
       class : 'run-time',
+      
     }, `${bottomStore.Runtime}`)
   }
 }
