@@ -21,6 +21,7 @@ const React = {
         Object.keys(props).forEach(key => {
           // 이벤트 적용
           if (key.startsWith('on')) {
+            //const events = key.replace('on', '')
             const events = key.replace('on', '').toLowerCase()
             const [eventName, ...modifiers] = events.split('.')
             const options = modifiers.reduce((acc, cur) => {

@@ -18,8 +18,10 @@ export class infoBox extends React.Component {
         console.log('눌림')
       }
     },
-    [`Hello?!`,
-    React.createElement(boxLayer)   
+    [
+      `Hello?!`,
+      React.createElement(boxLayer),
+      React.createElement(Loading),
   ])
   }
 }
@@ -31,6 +33,32 @@ class boxLayer extends React.Component {
     return React.createElement('div', {
       class : 'center-wrap-column',
     }, [React.createElement(left) , React.createElement(right) ])
+  }
+}
+
+class Loading extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return React.createElement('div', {
+      class : 'loading',
+    },[
+        React.createElement('div',{
+          class : 'h-loader'
+        },
+          React.createElement('svg',{
+            "viewBox": "22 22 46 46"
+          },
+            React.createElement('circle',{
+
+              },""
+            )
+          )
+
+        )
+        ,`Loading...`
+      ] )
   }
 }
 

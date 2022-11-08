@@ -330,5 +330,74 @@ section.info-box div.center-wrap-column .right .right-bottom {
 section.info-box div.center-wrap-column .right .right-bottom .plot {
   font-style: italic;
 }
+section.info-box .loading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #d2dce6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+div.h-loader {
+  display: block;
+  width: 100px;
+  height: 100px;
+  color: orange;
+  z-index: 10;
+}
+
+svg {
+  display: block;
+  animation: progress-circular-rotate 1.4s linear infinite;
+  width: 100px;
+  height: 100px;
+}
+
+:not(svg) {
+  transform-origin: 0px 0px;
+}
+
+circle {
+  display: block;
+  animation: progress-circular-dash 1.4s ease-in-out infinite;
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-dasharray: 80, 200;
+  stroke-dashoffset: 0px;
+  stroke: currentColor;
+  width: 100px;
+  height: 100px;
+  cx: 45;
+  cy: 45;
+  r: 20;
+  stroke-width: 6px;
+  stroke-dasharray: 125;
+  stroke-dashoffset: 125px;
+}
+
+@keyframes progress-circular-rotate {
+  to {
+    transform: rotate(1turn);
+  }
+}
+@keyframes progress-circular-dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0px;
+  }
+  50% {
+    stroke-dasharray: 100, 200;
+    stroke-dashoffset: -15px;
+  }
+  to {
+    stroke-dasharray: 100, 200;
+    stroke-dashoffset: -124px;
+  }
+}
 
 /*# sourceMappingURL=style.css.map */
