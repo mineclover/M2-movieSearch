@@ -1,10 +1,15 @@
 import {React} from './module/simpleReact.js';
 import { infoBox } from './module/infoBox.js';
 import { MovieListWrap } from './module/movieSearch.js';
-import {sampleStore , movieStore ,bottomStore } from './module/data.js';
-import { HeaderArea } from './module/SearchBar.js';
+import {sampleStore , movieStore ,bottomStore , searchForm} from './module/data.js';
+import { HeaderArea } from './module/headerBar.js';
 
 // 스토어 정의!
+
+
+
+
+
 
 // Simple React Library!
 
