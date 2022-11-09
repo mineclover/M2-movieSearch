@@ -436,9 +436,6 @@ circle {
   stroke: currentColor;
   width: 100px;
   height: 100px;
-  cx: 45;
-  cy: 45;
-  r: 20;
   stroke-width: 6px;
   stroke-dasharray: 125;
   stroke-dashoffset: 125px;
