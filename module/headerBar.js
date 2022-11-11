@@ -92,7 +92,7 @@ class SearchBar extends React.Component {
             return React.createElement('option',{class: 'item', value: `${num}` , alt : `${num}`},`${num}`)
           }),
         ),
-        React.createElement('label',{class: 'search-option-label', for:"search-count" , alt : `검색 결과 수`},'페이지 수')
+        React.createElement('div',{class: 'search-option-label', for:"search-count" , alt : `검색 결과 수`},'페이지 수')
         
 
       ]
@@ -120,7 +120,7 @@ class typeBar extends React.Component {
             return React.createElement('option',{class: 'item', value: `${name}` , alt : `${name}`},`${name}`)
           }),
         ),
-        React.createElement('label',{class: 'search-option-label', alt : `영화 타입`},'영화 타입')
+        React.createElement('div',{class: 'search-option-label', alt : `영화 타입`},'영화 타입')
         
 
       ]
@@ -161,7 +161,7 @@ class YearBar extends React.Component {
             return React.createElement('option',{class: 'item', value: `${name}` , alt : `${name}`},`${name}`)
           }),
         ),
-        React.createElement('label',{class: 'search-option-label', alt : `개봉연도 선택`},'개봉연도 선택')
+        React.createElement('div',{class: 'search-option-label', alt : `개봉연도 선택`},'개봉연도 선택')
         
 
       ]
@@ -182,12 +182,12 @@ class sumitButton extends React.Component {
           'div', 
           {
             
-            class : "search-option"
+            class : "search-sumit"
 
           },
-          '임시 텍스트',
+          '검색',
         ),
-        React.createElement('label',{class: 'search-option-label', alt : `개봉연도 선택`},'개봉연도 선택')
+        React.createElement('div',{class: 'search-option-label', alt : `검색`},'검색')
         
 
       ]
