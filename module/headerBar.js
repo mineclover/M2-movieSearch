@@ -65,11 +65,32 @@ class MovieSearch extends React.Component {
   }
 }
 
-
-const post = async () => {
-  let { movies } = await getMovies(searchForm.inputText);
-  movieStore.movies = movies;
+async function searchControl(key) {
+  const res = await getMovies(searchForm.inputText , key);
+  if ( "message" in res) {
+    return res;
+  }
+  else{
+    console.log('맞게 돌려보냄');
+    console.log(res);
+    return res.movies;
+  }  
 }
+
+const post = async (toggle) => {
+  let temp = [];
+  for (let i = 0 ; i < searchForm.pageUnit / 10 ; i += 1) {
+
+    temp.push(await searchControl(searchForm.page + i));
+
+  }
+  
+  console.log(temp);
+  movieStore.movies = await Promise.all(...temp);
+  console.log(movieStore.movies);
+}
+
+
 
 
 class SearchBar extends React.Component {
@@ -93,7 +114,7 @@ class SearchBar extends React.Component {
             return React.createElement('option',{class: 'item', value: `${num}` , alt : `${num}`},`${num}`)
           }),
         ),
-        React.createElement('div',{class: 'search-option-label', for:"search-count" , alt : `검색 결과 수`},'페이지 수')
+        React.createElement('div',{class: 'search-option-label', for:"search-count" , alt : `검색 당 페이지 수`},' 검색 당 페이지 수')
         
 
       ]
@@ -159,9 +180,10 @@ class YearBar extends React.Component {
             onchange : e =>  {  searchForm.year = e.target.value }
 
           },
-          years().map( name => {
+          [React.createElement('option',{class: 'item', value: `` , alt : `All`},`All`),
+          ...years().map( name => {
             return React.createElement('option',{class: 'item', value: `${name}` , alt : `${name}`},`${name}`)
-          }),
+          })],
         ),
         React.createElement('div',{class: 'search-option-label', alt : `개봉연도 선택`},'개봉연도 선택')
         

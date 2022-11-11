@@ -3,10 +3,10 @@ import {sampleStore , movieStore ,transmission, bottomStore , searchForm } from 
 
 
 // 테스트 사이드
-export async function getMovies(title) {
+export async function getMovies(title,page=1) {
   const s = `&s=${title}`;
   const y = `&y=${searchForm.year}`;
-  const p = `&page=${searchForm.page}`;
+  const p = `&page=${page}`;
   const t = `&type=${searchForm.type}`;
   console.log(`https://omdbapi.com/?apikey=7035c60c${s}${y}${p}${t}`);
   const res = await fetch(`https://omdbapi.com/?apikey=7035c60c${s}${y}${p}${t}`);

@@ -44,10 +44,12 @@ const movieStore = new React.Store({
   movies: []
 })
 
+// pageUnit 가져올 갯수?
 const searchForm = new React.Store({
-  year : 'All',
+  movie: {},
+  year : "",
   page : 1,
-  type : "",
+  type : "movie",
   pageUnit : 10,
   inputText : ""
 })
