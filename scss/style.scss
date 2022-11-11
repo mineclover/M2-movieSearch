@@ -127,7 +127,7 @@ main.center-wrap-column {
         z-index: 10;
         position : absolute;
         top: -0.8em;
-        left: 1em;
+        left: 0em;
         display: flex;
         align-items: center;
         
@@ -136,15 +136,47 @@ main.center-wrap-column {
       .movie,
       .series,
       .episode #text{
-        font-size: 24px;
-        text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
+        color: var(--font-color);
       }
       .movie::before{
         content: "";
         margin-right: 0.5em;
-        background-color: #d9ac4a;
-        width: 2em;
-        height: 2em;
+        background-image: url('/img/movie.png');
+        
+        background-size: cover;
+        width: 3em;
+        height: 3em;
+      }
+      .movie:hover::after{
+        content: "movie";
+        margin-bottom: 0.5em;
+      }
+
+      .series::before{
+        content: "";
+        margin-right: 0.5em;
+        background-image: url('/img/series.png');
+        background-size: cover;
+        width: 3em;
+        height: 3em;
+      }
+      .series:hover::after{
+        content: "series";
+        margin-bottom: 0.5em;
+      }
+
+
+      .episode::before{
+        content: "";
+        margin-right: 0.5em;
+        background-image: url('/img/episode.png');
+        background-size: cover;
+        width: 3em;
+        height: 3em;
+      }
+      .episode:hover::after{
+        content: "episode";
+        margin-bottom: 0.5em;
       }
       
       
@@ -572,9 +604,6 @@ circle {
 
   width: 100px;
   height: 100px;
-  cx : 45;
-  cy: 45;
-  r: 20;
   stroke-width : 6px;
   stroke-dasharray : 125;
   stroke-dashoffset : 125px;

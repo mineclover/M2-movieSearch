@@ -112,7 +112,7 @@ const naFilter = mv => {
     React.createElement('div', {
       class : `${mv.Type}`
     },[
-      `${mv.Type}`
+      //`${mv.Type}`
     ])
   ])
 }

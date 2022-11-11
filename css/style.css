@@ -107,22 +107,50 @@ main.center-wrap-column section.list-wrap article .episode {
   z-index: 10;
   position: absolute;
   top: -0.8em;
-  left: 1em;
+  left: 0em;
   display: flex;
   align-items: center;
 }
 main.center-wrap-column section.list-wrap article .movie,
 main.center-wrap-column section.list-wrap article .series,
 main.center-wrap-column section.list-wrap article .episode #text {
-  font-size: 24px;
-  text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
+  color: var(--font-color);
 }
 main.center-wrap-column section.list-wrap article .movie::before {
   content: "";
   margin-right: 0.5em;
-  background-color: #d9ac4a;
-  width: 2em;
-  height: 2em;
+  background-image: url("/img/movie.png");
+  background-size: cover;
+  width: 3em;
+  height: 3em;
+}
+main.center-wrap-column section.list-wrap article .movie:hover::after {
+  content: "movie";
+  margin-bottom: 0.5em;
+}
+main.center-wrap-column section.list-wrap article .series::before {
+  content: "";
+  margin-right: 0.5em;
+  background-image: url("/img/series.png");
+  background-size: cover;
+  width: 3em;
+  height: 3em;
+}
+main.center-wrap-column section.list-wrap article .series:hover::after {
+  content: "series";
+  margin-bottom: 0.5em;
+}
+main.center-wrap-column section.list-wrap article .episode::before {
+  content: "";
+  margin-right: 0.5em;
+  background-image: url("/img/episode.png");
+  background-size: cover;
+  width: 3em;
+  height: 3em;
+}
+main.center-wrap-column section.list-wrap article .episode:hover::after {
+  content: "episode";
+  margin-bottom: 0.5em;
 }
 main.center-wrap-column section.list-wrap article span.title {
   width: 84%;

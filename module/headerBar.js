@@ -14,7 +14,6 @@ export class HeaderArea extends React.Component {
       'header',
       {
         class : 'center-wrap-column',
-        onclick : searchFoucs
       },
       [
         React.createElement(SearchBox),
@@ -27,9 +26,7 @@ export class HeaderArea extends React.Component {
   }
 }
 
-const searchFoucs = e => { 
 
-}
 
 
 export class SearchBox extends React.Component {
@@ -61,14 +58,17 @@ class MovieSearch extends React.Component {
   render() {
     return React.createElement('input', {
       placeholder: '영화 제목을 검색하세요.',
-      onchange: async event => {
-        let { movies } = await getMovies(event.target.value);
-        movieStore.movies = movies;
-      },
+      onchange : e =>  {  searchForm.inputText = e.target.value; post() },
       class : 'search-input'
       
     })
   }
+}
+
+
+const post = async () => {
+  let { movies } = await getMovies(searchForm.inputText);
+  movieStore.movies = movies;
 }
 
 
@@ -85,7 +85,8 @@ class SearchBar extends React.Component {
           'select', 
           {
             name : "search-count",
-            class : "search-option"
+            class : "search-option",
+            onchange : e =>  {  searchForm.pageUnit = e.target.value }
 
           },
           [10,20,30].map( num => {
@@ -112,8 +113,8 @@ class typeBar extends React.Component {
         React.createElement(
           'select', 
           {
-            
-            class : "search-option"
+            class : "search-option",
+            onchange : e =>  {  searchForm.type = e.target.value }
 
           },
           ["movie", "series", "episode"].map( name => {
@@ -154,7 +155,8 @@ class YearBar extends React.Component {
           'select', 
           {
             
-            class : "search-option"
+            class : "search-option",
+            onchange : e =>  {  searchForm.year = e.target.value }
 
           },
           years().map( name => {
@@ -182,8 +184,8 @@ class sumitButton extends React.Component {
           'div', 
           {
             
-            class : "search-sumit"
-
+            class : "search-sumit",
+            onchange : post,
           },
           '검색',
         ),

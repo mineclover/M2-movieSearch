@@ -45,9 +45,11 @@ const movieStore = new React.Store({
 })
 
 const searchForm = new React.Store({
-  year : "",
+  year : 'All',
   page : 1,
-  type : ""
+  type : "",
+  pageUnit : 10,
+  inputText : ""
 })
 
 
