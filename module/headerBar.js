@@ -84,8 +84,8 @@ const post = async (toggle) => {
     temp.push(await searchControl(searchForm.page + i));
 
   }
-  
-  console.log(temp);
+  console.log("...temp");
+  console.log(temp.flat());
   movieStore.movies = await Promise.all(...temp);
   console.log(movieStore.movies);
 }
