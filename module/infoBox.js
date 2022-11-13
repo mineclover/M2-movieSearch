@@ -19,13 +19,26 @@ export class infoBox extends React.Component {
       },
     },
     [
-      `Hello?!`,
-      React.createElement(boxLayer),
+      React.createElement(BoxButton),
+      React.createElement(BoxLayer),
       React.createElement(Loading),
   ])
   }
 }
-class boxLayer extends React.Component {
+
+class BoxButton extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return React.createElement('div', {
+      class : 'box-button',
+    })
+  }
+}
+
+
+class BoxLayer extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -94,7 +107,7 @@ class leftTime extends React.Component {
   }
   render() {
     return React.createElement('div', {
-      class : 'run-time',
+      class : 'tag',
       
     }, `${bottomStore.Runtime}`)
   }
@@ -113,7 +126,7 @@ class right extends React.Component {
   }
 }
 
-
+const titleList = [["Genre", "장르"],["Actors" , "출연진"]];
 class rightTop extends React.Component {
   constructor(props) {
     super(props)
@@ -121,7 +134,7 @@ class rightTop extends React.Component {
   render() {
     return React.createElement('section', {
       class : 'right-top',
-    }, [React.createElement(infoTitle),React.createElement(infoYear)])
+    }, [React.createElement(infoTitle),...titleList.map(optionTag),React.createElement(infoYear)])
   }
 }
 
@@ -133,7 +146,7 @@ class infoTitle extends React.Component {
   render() {
     return React.createElement('div', {
       class : 'title',
-    }, [`${bottomStore.Title}`,React.createElement(leftTime)])
+    }, [`${bottomStore.Title}`])
   }
 }
 
@@ -156,8 +169,17 @@ class rightBottom extends React.Component {
   render() {
     return React.createElement('section', {
       class : 'right-bottom',
-    }, [React.createElement(infoPlot)])
+    }, [...optionList.map(optionTag), React.createElement(infoPlot)])
   }
+}
+
+const optionList = [["Released" , "출시일"] , ["Runtime", "영상 시간"] , ["Language", "언어"] , ["BoxOffice", "박스 오피스"]];
+
+const optionTag = name => { 
+  return React.createElement('div', {
+    class : 'tag',
+    ALT : `${name[1]}`
+  },[`${name[1]} : `, bottomStore[`${name[0]}`]]);
 }
 
 

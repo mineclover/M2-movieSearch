@@ -15,6 +15,7 @@
   --font-color: #333;
   --world-width : 80%;
 
+  --infobox-height : 150px;
   --search-layout : nowrap;
 }
 
@@ -44,9 +45,9 @@ body {
 //movieSearch ~ main 영역
 main.center-wrap-column {
   position: absolute;
-  bottom: 300px;
+  bottom: var(--infobox-height);
   width: var(--world-width);
-  height: calc(100% - 300px);
+  height: calc(100% - var(--infobox-height));
   border-radius: 2em 2em 0 0;
   background: #ffca57;
   box-shadow:  10px 10px 20px #d9ac4a,
@@ -529,21 +530,36 @@ header:hover {
 
 
 section.info-box{
+  padding-top : 20px;
   position: fixed;
 
   bottom: 0;
   width: 100%;
-  height: 300px;
+  height: var(--infobox-height);
   background-color: #fff;
-  border: 2px solid #999;
-  box-shadow: 1px -2px 4px rgba(0, 0, 0, 0.3);
+  //border: 2px solid #999;
+  //box-shadow: 1px -2px 4px rgba(0, 0, 0, 0.3);
 
   
+  .box-button{
+    position : absolute;
+    top : -25px;
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    
+    box-shadow: -2px -2px 4px rgba(255, 255, 255, 0.3);
+    transform: rotateZ(45deg);
 
+    &:hover{
+      box-shadow: -2px -2px 4px rgba(255, 0, 0, 0.3);
+    }
+  }
   div.center-wrap-column{
     width: var(--world-width);
     height: 100%;
-    background-color: #d9ac4a;
+
     flex-direction: row;
 
     .left{
@@ -561,6 +577,7 @@ section.info-box{
         
         height: 100%;
         aspect-ratio: 2 / 3;
+        
         background-color: #999;
       }
     }
@@ -569,36 +586,43 @@ section.info-box{
       width: 100%;
       height: 100%;
       margin: 0 1em;
-      background-color: #ce9196;
+
       flex-direction: column;
       justify-content:flex-end;
 
-      
+      .tag{
+        display: inline;
+        // position: absolute;
+        // bottom: 4px;
+        // left: 4px;
+        padding: 0.2em 0.3em;
+        background-color: #fff;
+        border-radius: 4px;
+        border: 1px solid #999;
+        font-size: 12px;
+        
+      }
       .right-top{
         position: relative;
         display: flex;
         flex-direction: row;
-        justify-content:space-between;
-        margin: 0.5em 0.5em;
+        justify-content:flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5em;
+
+        
         width: 100%;
         height: 30%;
-        background-color: #5f77ff;
+
 
         div.title{
-          font-size: 24px;
+          width: 100%;
+          font-size: 20px;
+          font-weight: bold;
           text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
         }
-        .run-time{
-          position: absolute;
-          bottom: 4px;
-          left: 4px;
-          padding: 0.2em 0.3em;
-          background-color: #fff;
-          border-radius: 4px;
-          border: 1px solid #999;
-          font-size: 14px;
-          font-weight: bold;
-        }
+        
         .year{
           position: absolute;
           top: 4px;
@@ -614,14 +638,33 @@ section.info-box{
       .right-bottom{
         display: flex;
         flex-direction: row;
-        justify-content:space-between;
+        justify-content:flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        column-gap: 0.5em;
         margin: 0.5em 0.5em;
         width: 100%;
         height: 70%;
-        background-color: #5f77ff;
+
 
         .plot{
+          width: 100%;
+          height: 60px;
+          overflow-y: auto;
           font-style: italic;
+          font-size: 14px;
+          padding: 0 1em 0 0;
+          &::-webkit-scrollbar {
+            width: 1em;  /* 스크롤바의 너비 */
+          }
+          &::-webkit-scrollbar-thumb {
+            background: var(--font-color); /* 스크롤바의 색상 */
+            border-radius: 0 1em 0 1em;
+          }
+          &::-webkit-scrollbar-track {
+            background: var(--outer-shadow);  /*스크롤바 뒷 배경 색상*/
+            border-radius: 0 1em 0 1em;
+          }
         }
       }
 
