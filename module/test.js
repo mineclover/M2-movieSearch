@@ -2,6 +2,7 @@ import {React} from './simpleReact.js';
 import {sampleStore , movieStore ,transmission, bottomStore , searchForm } from './data.js';
 
 
+
 // 테스트 사이드
 export async function getMovies(title,page=1) {
   const s = `&s=${title}`;
@@ -28,16 +29,73 @@ export async function getMovies(title,page=1) {
 }
 
 
-async function deepInfo(id) {
-  const res = await fetch(
-    `https://omdbapi.com/?apikey=7035c60c&i=${id}&plot=full`
-  );
-  const json = await res.json();
-  if (json.Response === "True") {
-    return json;
+
+
+
+
+
+
+
+
+async function searchControl(key) {
+  const res = await getMovies(searchForm.inputText , key);
+  console.log('얍');
+  console.log(res);
+  let keyList = Object.keys(res);
+  if (keyList.includes("Error")) {
+    console.log("에러");
+    return res;
   }
-  return json.Error;
+  else{
+    console.log('맞게 돌려보냄');
+    console.log(res);
+    return res.movies;
+  }  
 }
+
+const post = async (toggle) => {
+
+  document.querySelector('.list-loading').style.display = "flex"
+  let temp = [];
+
+  for (let i = 0 ; i < searchForm.pageUnit / 10 ; i += 1) {
+    temp.push(await searchControl(searchForm.page + i)); 
+    if(temp[i]["Error"]){
+      console.log("에러있음");
+      errorMsg(temp[i].Error);
+    }
+    
+  }
+
+  searchForm.page += Math.floor(searchForm.pageUnit / 10);
+  console.log("...temp");
+  console.log(temp.flat());
+  //movieStore.movies = await Promise.all(...temp);
+  movieStore.movies = temp.flat();
+  console.log(movieStore.movies);
+  document.querySelector('.list-loading').style.display = "none"
+}
+let Timeout01, Timeout02;
+const errorMsg = (msg) => {
+  clearTimeout(Timeout01);
+  clearTimeout(Timeout02);
+  document.querySelector("section.error-box").classList.remove("delect");
+  document.querySelector("section.error-box").classList.remove("active");
+  document.querySelector("section.error-box").innerHTML = `Error : ${msg}`;
+  document.querySelector("section.error-box").classList.add("active");
+  
+  console.log(msg);
+  Timeout01 = setTimeout(()=>{
+    document.querySelector("section.error-box").classList.add("delect");
+    
+    Timeout02 = setTimeout(()=>{
+      document.querySelector("section.error-box").classList.remove("active");
+      document.querySelector("section.error-box").classList.remove("delect");
+    },3000);
+
+  },3000);
+}
+
 
 
 
@@ -113,6 +171,9 @@ const getID = async e => {
   // 기존 데이터에 추가하는 이유는 기존 데이터를 유지하면서 새로운 데이터를 추가하기 위해서이다
 
   movieStore.movies.forEach(async movie => {
+    if (id == "undefined") {
+      errorMsg("영화 정보가 없습니다");
+    };
     if (movie.imdbID === id) {
       console.log(movie);
       movie = await deepInfo(id);
@@ -121,13 +182,26 @@ const getID = async e => {
   });
   
 };
+async function deepInfo(id) {
+
+  const res = await fetch(
+    `https://omdbapi.com/?apikey=7035c60c&i=${id}&plot=full`
+  );
+  const json = await res.json();
+  if (json.Response === "True") {
+    return json;
+  }
+  return json.Error;
+}
+
 
 
 const removeSelect = ()=> {
   document.querySelectorAll('section.list-wrap article').forEach( el => { el.classList.remove('select') } );
+  // 선택된 영화 해제하는 기능
   // 화살표 함수를 중괄호로 묶으면 리턴 값 없다
   // All 로 해야 리스트로 반환
 }
 
 
-export {naFilter};
+export {naFilter , post , errorMsg , searchControl };

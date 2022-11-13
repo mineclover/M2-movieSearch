@@ -1,6 +1,6 @@
 import {React} from './simpleReact.js';
 import { movieStore , searchForm } from './data.js';
-import {getMovies} from './test.js';
+import { post , errorMsg , searchControl } from './test.js';
 
 
 
@@ -80,61 +80,7 @@ class MovieSearch extends React.Component {
   }
 }
 
-async function searchControl(key) {
-  const res = await getMovies(searchForm.inputText , key);
-  console.log('얍');
-  console.log(res);
-  let keyList = Object.keys(res);
-  if (keyList.includes("Error")) {
-    console.log("에러");
-    return res;
-  }
-  else{
-    console.log('맞게 돌려보냄');
-    console.log(res);
-    return res.movies;
-  }  
-}
 
-const post = async (toggle) => {
-
-  document.querySelector('.list-loading').style.display = "flex"
-  let temp = [];
-
-  for (let i = 0 ; i < searchForm.pageUnit / 10 ; i += 1) {
-    let gate = await searchControl(searchForm.page + i)
-    if(gate["Error"]){
-      console.log("에러있음");
-      errorMsg(gate.Error);
-      gate = undefined;
-    }
-    temp.push(gate); 
-  }
-
-  searchForm.page += Math.floor(searchForm.pageUnit / 10);
-  console.log("...temp");
-  console.log(temp.flat());
-  //movieStore.movies = await Promise.all(...temp);
-  movieStore.movies = temp.flat();
-  console.log(movieStore.movies);
-  document.querySelector('.list-loading').style.display = "none"
-}
-
-const errorMsg = (msg) => {
-  document.querySelector("section.error-box").innerHTML = `Error : ${msg}`;
-  document.querySelector("section.error-box").classList.add("active");
-  
-  console.log(msg);
-  setTimeout(()=>{
-    document.querySelector("section.error-box").classList.add("delect");
-    
-    setTimeout(()=>{
-      document.querySelector("section.error-box").classList.remove("active");
-      document.querySelector("section.error-box").classList.remove("delect");
-    },3000);
-
-  },3000);
-}
 
 
 
