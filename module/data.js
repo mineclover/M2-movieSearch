@@ -30,7 +30,6 @@ const bottomStore = new React.Store({
   Production: 'N/A',
   Website: 'N/A',
   Response: 'True'
-  
 })
 
 
