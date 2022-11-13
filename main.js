@@ -3,9 +3,9 @@ import { infoBox } from './module/infoBox.js';
 import { MovieListWrap } from './module/movieSearch.js';
 import {sampleStore , movieStore ,bottomStore , searchForm} from './module/data.js';
 import { HeaderArea } from './module/headerBar.js';
+import {getMovies} from './module/test.js';
 
 // 스토어 정의!
-
 
 
 
@@ -23,7 +23,8 @@ class App extends React.Component {
     return React.createElement(
       'body-root',
       {
-        class : 'center-wrap-column'
+        class : 'center-wrap-column',
+        
       },
       [
         

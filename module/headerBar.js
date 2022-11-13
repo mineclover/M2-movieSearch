@@ -21,11 +21,26 @@ export class HeaderArea extends React.Component {
         React.createElement(typeBar),
         React.createElement(YearBar),
         React.createElement(sumitButton),
+        React.createElement(ErrorMsgBox),
       ]
     )
   }
 }
 
+export class ErrorMsgBox extends React.Component {
+  constructor() {
+    super()
+  }
+  render() {
+    return React.createElement(
+      'section',
+      {
+        class : 'error-box',
+      },
+      "error"
+    )
+  }
+}
 
 
 
@@ -67,7 +82,11 @@ class MovieSearch extends React.Component {
 
 async function searchControl(key) {
   const res = await getMovies(searchForm.inputText , key);
-  if ( "message" in res) {
+  console.log('얍');
+  console.log(res);
+  let keyList = Object.keys(res);
+  if (keyList.includes("Error")) {
+    console.log("에러");
     return res;
   }
   else{
@@ -78,16 +97,43 @@ async function searchControl(key) {
 }
 
 const post = async (toggle) => {
+
+  document.querySelector('.list-loading').style.display = "flex"
   let temp = [];
+
   for (let i = 0 ; i < searchForm.pageUnit / 10 ; i += 1) {
-
-    temp.push(await searchControl(searchForm.page + i));
-
+    let gate = await searchControl(searchForm.page + i)
+    if(gate["Error"]){
+      console.log("에러있음");
+      errorMsg(gate.Error);
+      gate = undefined;
+    }
+    temp.push(gate); 
   }
+
+  searchForm.page += Math.floor(searchForm.pageUnit / 10);
   console.log("...temp");
   console.log(temp.flat());
-  movieStore.movies = await Promise.all(...temp);
+  //movieStore.movies = await Promise.all(...temp);
+  movieStore.movies = temp.flat();
   console.log(movieStore.movies);
+  document.querySelector('.list-loading').style.display = "none"
+}
+
+const errorMsg = (msg) => {
+  document.querySelector("section.error-box").innerHTML = `Error : ${msg}`;
+  document.querySelector("section.error-box").classList.add("active");
+  
+  console.log(msg);
+  setTimeout(()=>{
+    document.querySelector("section.error-box").classList.add("delect");
+    
+    setTimeout(()=>{
+      document.querySelector("section.error-box").classList.remove("active");
+      document.querySelector("section.error-box").classList.remove("delect");
+    },3000);
+
+  },3000);
 }
 
 
@@ -138,9 +184,12 @@ class typeBar extends React.Component {
             onchange : e =>  {  searchForm.type = e.target.value }
 
           },
-          ["movie", "series", "episode"].map( name => {
+          [
+            React.createElement('option',{class: 'item', value: `` , alt : `ALL`},`ALL`),
+          ...["movie", "series", "episode"].map( name => {
             return React.createElement('option',{class: 'item', value: `${name}` , alt : `${name}`},`${name}`)
-          }),
+          })
+          ],
         ),
         React.createElement('div',{class: 'search-option-label', alt : `영화 타입`},'영화 타입')
         
@@ -180,7 +229,7 @@ class YearBar extends React.Component {
             onchange : e =>  {  searchForm.year = e.target.value }
 
           },
-          [React.createElement('option',{class: 'item', value: `` , alt : `All`},`All`),
+          [React.createElement('option',{class: 'item', value: `` , alt : `ALL`},`ALL`),
           ...years().map( name => {
             return React.createElement('option',{class: 'item', value: `${name}` , alt : `${name}`},`${name}`)
           })],

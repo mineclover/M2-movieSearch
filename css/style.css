@@ -47,6 +47,35 @@ main.center-wrap-column {
   box-shadow: 10px 10px 20px #d9ac4a, -10px -10px 20px #ffe864;
   transform: translateY(2em);
 }
+main.center-wrap-column .list-loading {
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  backdrop-filter: blur(6.4px);
+  -webkit-backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+main.center-wrap-column .list-loading div.h-loader {
+  display: block;
+  width: 60px;
+  height: 60px;
+  color: orange;
+  z-index: 10;
+}
+main.center-wrap-column .list-loading div.h-loader:after {
+  content: "loading...";
+  display: block;
+  margin-top: 1em;
+  font-size: 16px;
+  font-weight: bold;
+}
 main.center-wrap-column section.list-wrap {
   display: flex;
   padding: 4em 0;
@@ -96,6 +125,7 @@ main.center-wrap-column section.list-wrap article:hover, main.center-wrap-column
 }
 main.center-wrap-column section.list-wrap article img.simple {
   border-radius: 1em;
+  background-color: #999;
   margin: 8% 0;
   width: 85%;
   aspect-ratio: 2/3;
@@ -188,6 +218,35 @@ header.center-wrap-column {
   border: 1px solid rgba(255, 255, 255, 0.45);
   transition-duration: 1s;
   transition-property: transform, background-color, box-shadow;
+}
+header.center-wrap-column section.error-box {
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  width: fit-content;
+  height: fit-content;
+  border: 1px solid #fff;
+  border-radius: 1em;
+  padding: 4px 16px 8px 16px;
+  background-color: rgb(255, 50, 50);
+  color: #fff;
+  text-align: center;
+  z-index: 999;
+  font-size: 16px;
+  opacity: 0%;
+  transition: transform 1s;
+}
+header.center-wrap-column section.error-box.active {
+  transform: translateY(40px);
+  opacity: 100%;
+  transition-duration: 1s;
+  transition-property: transform, opacity;
+}
+header.center-wrap-column section.error-box.delect {
+  transform: translateY(0px);
+  opacity: 0%;
+  transition-duration: 1s;
+  transition-property: transform, opacity;
 }
 header.center-wrap-column .search-box {
   position: relative;

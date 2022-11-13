@@ -24,7 +24,7 @@ export async function getMovies(title,page=1) {
       totalResults,
     };
   }
-  return json.Error;
+  return json;
 }
 
 
@@ -40,26 +40,6 @@ async function deepInfo(id) {
 }
 
 
-(async()=> {
-
-  // const a = await getMovies('Fazoni i Fore 2');
-  const a = await getMovies('For');
-  const b = await getMovies('ㄱㄴㄷ');
-  console.log("test a : "+a);
-  console.log("test : "+b);
-  console.log(a);
-  console.log(b);
-  console.log(await deepInfo('tt0059578'));
-
-  const id = await a.movies[0].imdbID;
-  
-  const c = await deepInfo(id);
-  console.log(c);
-
-  
-  movieStore.movies = a.movies;
-
-})();
 
 // 검색을 하면 기존 기록을 갱신한다
 
@@ -102,8 +82,11 @@ const naFilter = mv => {
       },
       onclick: () => {
         document.querySelector('.bottom-loading').style.display = 'flex';
-      }
-      
+      },
+      onload:e => {
+        //console.log(e.target);
+        e.target.style.display = "block";
+      },
     }),
     React.createElement('span', {
       class : "title",

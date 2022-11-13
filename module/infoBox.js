@@ -53,9 +53,6 @@ class Loading extends React.Component {
   </svg>
 </div>`
     })
-      
-    
-
     return component;
   }
 }
