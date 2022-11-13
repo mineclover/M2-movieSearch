@@ -92,7 +92,6 @@ const errorMsg = (msg) => {
       document.querySelector("section.error-box").classList.remove("active");
       document.querySelector("section.error-box").classList.remove("delect");
     },3000);
-
   },3000);
 }
 
