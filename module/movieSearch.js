@@ -29,7 +29,7 @@ export class MovieListWrap extends React.Component {
     )
   }
 }
-document.getElementById
+
 class MovieList extends React.Component {
   constructor() {
     super()

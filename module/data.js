@@ -47,6 +47,7 @@ const movieStore = new React.Store({
 const searchForm = new React.Store({
   movie: {},
   year : "",
+  startPage : 1,
   page : 1,
   type : "movie",
   pageUnit : 10,

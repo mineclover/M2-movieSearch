@@ -31,6 +31,7 @@ class App extends React.Component {
         React.createElement(MovieListWrap),
         
         React.createElement(infoBox),
+
         React.createElement(HeaderArea),
       ]
     )

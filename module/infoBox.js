@@ -1,6 +1,6 @@
 import {sampleStore , movieStore , bottomStore} from './data.js';
 import {React} from './simpleReact.js';
-
+import { pageNavBox } from './pageNavigation.js';
 // 상세 페이지
 
 
@@ -19,23 +19,15 @@ export class infoBox extends React.Component {
       },
     },
     [
-      React.createElement(BoxButton),
+      React.createElement(pageNavBox),
+
       React.createElement(BoxLayer),
       React.createElement(Loading),
   ])
   }
 }
 
-class BoxButton extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    return React.createElement('div', {
-      class : 'box-button',
-    })
-  }
-}
+
 
 
 class BoxLayer extends React.Component {
