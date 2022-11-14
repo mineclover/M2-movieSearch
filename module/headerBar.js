@@ -73,7 +73,7 @@ class MovieSearch extends React.Component {
   render() {
     return React.createElement('input', {
       placeholder: '영화 제목을 검색하세요.',
-      onchange : e =>  {  searchForm.inputText = e.target.value; post() },
+      onchange : e =>  {  searchForm.inputText = e.target.value; post(1) },
       class : 'search-input'
       
     })
@@ -202,7 +202,11 @@ class sumitButton extends React.Component {
           {
             
             class : "search-sumit",
-            onclick : post(),
+            onclick : ()=>{
+              searchForm.reset = true;
+              post();
+              
+            },
           },
           '검색',
         ),

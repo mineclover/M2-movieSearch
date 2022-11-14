@@ -55,8 +55,8 @@ async function searchControl(key) {
 
 const post = async (toggle) => {
   console.log("toggle");
-  console.log(toggle);
-  if(toggle !== undefined){
+  console.log(typeof toggle);
+  if(typeof toggle != 'object' && toggle !== undefined){
     searchForm.page = toggle;
   }
 
@@ -64,7 +64,7 @@ const post = async (toggle) => {
   let temp = [];
 
   for (let i = 0 ; i < searchForm.pageUnit / 10 ; i += 1) {
-    temp.push(await searchControl(searchForm.startPage + i)); 
+    temp.push(await searchControl(searchForm.page + i)); 
     if(temp[i]["Error"]){
       console.log("에러있음");
       errorMsg(temp[i].Error);
@@ -76,8 +76,13 @@ const post = async (toggle) => {
   console.log("...temp");
   console.log(temp.flat());
   //movieStore.movies = await Promise.all(...temp);
-  movieStore.movies = temp.flat();
-  console.log(movieStore.movies);
+  if ( searchForm.reset === true ) {
+    movieStore.movies = [...movieStore.movies, ...temp.flat()];
+    searchForm.reset = false;
+  }
+  else {
+    movieStore.movies = temp.flat();
+  }
   document.querySelector('.list-loading').style.display = "none"
 }
 
