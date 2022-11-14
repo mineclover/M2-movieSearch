@@ -263,6 +263,9 @@ header.center-wrap-column {
   transition-duration: 1s;
   transition-property: transform, background-color, box-shadow;
 
+  *:focus{
+    outline: 1px solid #333;
+  }
 
   section.error-box {
     display: block;
@@ -755,7 +758,7 @@ nav.nav-wrap {
 
   nav.last{
     white-space: wrap;
-    
+
   }
 
   .cursor-number {
@@ -850,6 +853,7 @@ nav.nav-wrap {
       .search-input,.search-option,.search-sumit {
         border-radius: 20px 20px 20px 20px;
       }
+      
     } 
   }
   

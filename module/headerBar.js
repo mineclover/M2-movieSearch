@@ -74,15 +74,12 @@ class MovieSearch extends React.Component {
     return React.createElement('input', {
       placeholder: '영화 제목을 검색하세요.',
       onchange : e =>  {  searchForm.inputText = e.target.value; post(1) },
-      class : 'search-input'
+      class : 'search-input',
+      tabindex : 1,
       
     })
   }
 }
-
-
-
-
 
 
 class SearchBar extends React.Component {
@@ -99,6 +96,7 @@ class SearchBar extends React.Component {
           {
             name : "search-count",
             class : "search-option",
+            tabindex : 2,
             onchange : e =>  {  searchForm.pageUnit = e.target.value }
 
           },
@@ -127,6 +125,7 @@ class typeBar extends React.Component {
           'select', 
           {
             class : "search-option",
+            tabindex : 3,
             onchange : e =>  {  searchForm.type = e.target.value }
 
           },
@@ -172,6 +171,7 @@ class YearBar extends React.Component {
           {
             
             class : "search-option",
+            tabindex : 4,
             onchange : e =>  {  searchForm.year = e.target.value }
 
           },
@@ -200,13 +200,19 @@ class sumitButton extends React.Component {
         React.createElement(
           'div', 
           {
-            
             class : "search-sumit",
+            tabindex : 5,
             onclick : ()=>{
               searchForm.reset = true;
               post();
               
             },
+            onkeydown : event =>{
+              if( event.keyCode == 13 ){
+                searchForm.reset = true;
+                post();
+              }
+            }
           },
           '검색',
         ),

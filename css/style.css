@@ -220,6 +220,9 @@ header.center-wrap-column {
   transition-duration: 1s;
   transition-property: transform, background-color, box-shadow;
 }
+header.center-wrap-column *:focus {
+  outline: 1px solid #333;
+}
 header.center-wrap-column section.error-box {
   display: block;
   position: absolute;
