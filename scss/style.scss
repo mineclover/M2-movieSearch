@@ -739,6 +739,95 @@ circle {
   }
 }
 
+
+nav.nav-wrap {
+  position:absolute;
+  display: flex;
+  top: -60px;
+  
+  
+  width: var(--world-width);
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-evenly;
+  align-items: flex-end;
+
+  nav.last{
+    white-space: wrap;
+    
+  }
+
+  .cursor-number {
+    font-size: 18px;  
+    color: #fff;
+    padding: 0.5em 0.5em 0.6em 0.5em;
+    border: 3px solid #fff;
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 1em;
+  }
+  .number {
+    display: inline-block;
+    
+    height: 1em;
+    font-size: 18px;  
+    color: #fff;
+    padding: 0.5em 0.5em 0.6em 0.5em;
+
+    white-space: nowrap;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 1em;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+  .start-wrap{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    font-size: 18px;  
+    color: var(--font-color);
+    padding: 0.5em 0.8em 0.6em 0.8em;
+    white-space: nowrap;
+    row-gap: 4px;
+    font-weight: bold;
+    
+    input {
+      display: none;
+      width: 50%;
+      height: 20px;
+      position: absolute;
+
+      left: 120px;
+      background-color: var(--bg-color);
+      border: 1px none;
+    
+      &.focus {
+        display: block;
+      }
+    }
+    
+  }
+
+}
+
+.glass {
+  backdrop-filter: blur(6.4px);
+  -webkit-backdrop-filter: blur(3px);
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 2em;
+  padding: 0 1em;  
+  
+  
+  box-shadow:  5px 5px 10px rgba(0, 0, 0, 0.4),
+              -5px -5px 10px rgba(0, 0, 0, 0.1);
+}
+
 @media screen and (max-width:1000px) {
   :root {
     --border-color: rgba(255,255,255,0.2);
@@ -767,40 +856,3 @@ circle {
 }
 
 
-nav.nav-wrap {
-  position:absolute;
-  display: flex;
-  top: -60px;
-  left: 0;
-  width: 100%;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-content: center;
-  justify-content: space-between;
-  align-items: flex-end;
-  
-
-  .cursor-number {
-    display: inline-block;
-    font-size: 18px;  
-    color: #fff;
-    padding: 0.5em 0.5em 0.6em 0.5em;
-    border: 3px solid #fff;
-    width: 1em;
-    height: 1em;
-    text-align: center;
-    font-weight: bold;
-    border-radius: 50%;
-  }
-  .number {
-    display: inline-block;
-    font-size: 18px;  
-    color: #fff;
-    padding: 0.5em 0.5em 0.6em 0.5em;
-
-    white-space: nowrap;
-    text-align: center;
-    font-weight: bold;
-    border-radius: 50%;
-  }
-}

@@ -202,7 +202,7 @@ class sumitButton extends React.Component {
           {
             
             class : "search-sumit",
-            onclick : post,
+            onclick : post(),
           },
           '검색',
         ),

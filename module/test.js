@@ -19,10 +19,10 @@ export async function getMovies(title,page=1) {
   console.log(json.Response);
   if (json.Response === "True") {
     const { Search: movies, totalResults } = json;
-    
+    searchForm.totalResult = totalResults;
+
     return {
-      movies,
-      totalResults,
+      movies
     };
   }
   return json;
@@ -54,12 +54,17 @@ async function searchControl(key) {
 }
 
 const post = async (toggle) => {
+  console.log("toggle");
+  console.log(toggle);
+  if(toggle !== undefined){
+    searchForm.page = toggle;
+  }
 
   document.querySelector('.list-loading').style.display = "flex"
   let temp = [];
 
   for (let i = 0 ; i < searchForm.pageUnit / 10 ; i += 1) {
-    temp.push(await searchControl(searchForm.page + i)); 
+    temp.push(await searchControl(searchForm.startPage + i)); 
     if(temp[i]["Error"]){
       console.log("에러있음");
       errorMsg(temp[i].Error);
@@ -67,7 +72,7 @@ const post = async (toggle) => {
     
   }
 
-  searchForm.page += Math.floor(searchForm.pageUnit / 10);
+  searchForm.page += Math.floor(searchForm.pageUnit / 10) - 1;
   console.log("...temp");
   console.log(temp.flat());
   //movieStore.movies = await Promise.all(...temp);
@@ -75,6 +80,8 @@ const post = async (toggle) => {
   console.log(movieStore.movies);
   document.querySelector('.list-loading').style.display = "none"
 }
+
+
 let Timeout01, Timeout02;
 const errorMsg = (msg) => {
   clearTimeout(Timeout01);

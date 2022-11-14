@@ -51,7 +51,8 @@ const searchForm = new React.Store({
   page : 1,
   type : "movie",
   pageUnit : 10,
-  inputText : ""
+  inputText : "",
+  totalResult : 100,
 })
 
 
