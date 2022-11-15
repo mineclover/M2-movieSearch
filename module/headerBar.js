@@ -203,7 +203,7 @@ class sumitButton extends React.Component {
             tabindex : 5,
             onclick : ()=>{
               searchForm.reset = true;
-              post();
+              post(1);
               
             },
             onkeydown : event =>{

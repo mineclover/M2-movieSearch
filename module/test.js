@@ -54,9 +54,10 @@ async function searchControl(key) {
 }
 
 const post = async (toggle) => {
-
+  
   if(typeof toggle != 'object' && toggle !== undefined){
     searchForm.page = toggle;
+    
   }
 
   document.querySelector('.list-loading').style.display = "flex"

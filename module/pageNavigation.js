@@ -163,8 +163,8 @@ class StartNumberInput extends React.Component {
         placeholder : "입력",
 
         onchange : event => {
+          post(Math.floor(parseInt(event.target.value)));
           searchForm.startPage = event.target.value;
-          searchForm.page = event.target.value;
           event.target.classList.remove("focus");
           
         },
