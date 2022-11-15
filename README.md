@@ -64,7 +64,6 @@
   - 이미지 로드 이벤트에 이미지가 로드 되야하는 이벤트를 또 넣는 건 굉장히 미련한 행동이였다
   ```
   onload:e => {
-  console.log(e.target.src);
   if ( e.target.src !== "N/A") e.target.src = poster;
   },
   ```

@@ -148,13 +148,12 @@ const years = ()=>{
   let temp = [];
   let now = new Date();	// 현재 날짜 및 시간
   let year = now.getFullYear();	// 연도
-  console.log(year);
   for (let i = year ; i > 1985 ; i--){
     temp.push(i);
   }
   return temp;
 }
-console.log(years());
+
 
 
 class YearBar extends React.Component {

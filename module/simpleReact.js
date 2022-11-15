@@ -11,7 +11,7 @@ const React = {
     // 그 값을 el 에 넣는다 나중에 다 반환한다
     if (typeof type === 'function') { // 컴포넌트 클래스 확인!
 
-      console.log(type, typeof type);
+
       const component = new type(props)
       el = component.render()
       component.el = el

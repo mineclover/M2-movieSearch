@@ -9,14 +9,14 @@ export async function getMovies(title,page=1) {
   const y = `&y=${searchForm.year}`;
   const p = `&page=${page}`;
   const t = `&type=${searchForm.type}`;
-  console.log(`https://omdbapi.com/?apikey=7035c60c${s}${y}${p}${t}`);
+  
   const res = await fetch(`https://omdbapi.com/?apikey=7035c60c${s}${y}${p}${t}`);
-  console.log(await fetch(`https://omdbapi.com/?apikey=7035c60c${s}${y}${p}${t}`));
+  
 
   const json = await res.json();
-  console.log('json');
-  console.log(json);
-  console.log(json.Response);
+  
+  
+  
   if (json.Response === "True") {
     const { Search: movies, totalResults } = json;
     searchForm.totalResult = totalResults;
@@ -39,23 +39,22 @@ export async function getMovies(title,page=1) {
 
 async function searchControl(key) {
   const res = await getMovies(searchForm.inputText , key);
-  console.log('얍');
-  console.log(res);
+  
+  
   let keyList = Object.keys(res);
   if (keyList.includes("Error")) {
-    console.log("에러");
+    
     return res;
   }
   else{
-    console.log('맞게 돌려보냄');
-    console.log(res);
+    
+    
     return res.movies;
   }  
 }
 
 const post = async (toggle) => {
-  console.log("toggle");
-  console.log(typeof toggle);
+
   if(typeof toggle != 'object' && toggle !== undefined){
     searchForm.page = toggle;
   }
@@ -66,15 +65,15 @@ const post = async (toggle) => {
   for (let i = 0 ; i < searchForm.pageUnit / 10 ; i += 1) {
     temp.push(await searchControl(searchForm.page + i)); 
     if(temp[i]["Error"]){
-      console.log("에러있음");
+      
       errorMsg(temp[i].Error);
     }
     
   }
 
   searchForm.page += Math.floor(searchForm.pageUnit / 10) - 1;
-  console.log("...temp");
-  console.log(temp.flat());
+  
+  
   //movieStore.movies = await Promise.all(...temp);
   if ( searchForm.reset === true ) {
     movieStore.movies = [...movieStore.movies, ...temp.flat()];
@@ -96,7 +95,7 @@ const errorMsg = (msg) => {
   document.querySelector("section.error-box").innerHTML = `Error : ${msg}`;
   document.querySelector("section.error-box").classList.add("active");
   
-  console.log(msg);
+  
   Timeout01 = setTimeout(()=>{
     document.querySelector("section.error-box").classList.add("delect");
     
@@ -153,7 +152,7 @@ const naFilter = mv => {
         document.querySelector('.bottom-loading').style.display = 'flex';
       },
       onload:e => {
-        //console.log(e.target);
+        
         e.target.style.display = "block";
       },
     }),
@@ -174,7 +173,7 @@ const getID = async e => {
   removeSelect();
   e = e.target
   if (e.tagName !== 'ARTICLE') e = e.parentElement;
-  console.log(e.dataset.id);
+  
   e.classList.add('select');
   const id = e.dataset.id;
 
@@ -186,7 +185,7 @@ const getID = async e => {
       errorMsg("영화 정보가 없습니다");
     };
     if (movie.imdbID === id) {
-      console.log(movie);
+      
       movie = await deepInfo(id);
       transmission(movie);
     }

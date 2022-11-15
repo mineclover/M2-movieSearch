@@ -113,8 +113,6 @@ const pageButton = num => {
     {
       class : 'number',
       onclick : ()=> {
-        console.log(Number.parseInt(num,10));
-        
 
         searchForm.startPage = Number.parseInt(num,10);
         post(Number.parseInt(num,10));

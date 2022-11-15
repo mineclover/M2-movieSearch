@@ -9,7 +9,7 @@ const React = {
     // 컴포넌트인 경우!
     if (typeof type === 'function') { // 컴포넌트 클래스 확인!
 
-      console.log(type, typeof type);
+
       const component = new type(props)
       el = component.render()
       component.el = el
