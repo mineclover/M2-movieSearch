@@ -17,7 +17,6 @@ import {getMovies} from './module/test.js';
 class App extends React.Component {
   constructor(props) {
     super(props)
-    bottomStore.imdbID = 'tt2294629'
   }
   render() {
     return React.createElement(

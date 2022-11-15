@@ -53,7 +53,8 @@ const searchForm = new React.Store({
   pageUnit : 10,
   inputText : "",
   totalResult : 100,
-  reset : false
+  reset : false,
+  beforeTop : 0 ,
 })
 
 

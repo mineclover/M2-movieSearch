@@ -208,8 +208,7 @@ class sumitButton extends React.Component {
             },
             onkeydown : event =>{
               if( event.keyCode == 13 ){
-                searchForm.reset = true;
-                post();
+                post(1);
               }
             }
           },

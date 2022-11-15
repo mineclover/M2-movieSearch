@@ -31,31 +31,27 @@ export class MovieListWrap extends React.Component {
   }
 }
 
-const io = new IntersectionObserver((entry, observer)=>{
-  console.log(entry[0].boundingClientRect.y);
-  if (entry[0].boundingClientRect.y > 500 && entry[0].boundingClientRect.y < 2000) {
+const fn = _.throttle( event=>{
+  let scrollSpace = event.target.scrollHeight - event.target.clientHeight;
+  searchForm.beforeTop = scrollSpace - 100;
+  console.log("스크롤 중");
+  if ( event.target.scrollTop === scrollSpace ) {
     searchForm.reset = true;
-    post(searchForm.page + 1);
-    io.disconnect(); // 옵저버 삭제
-    resetObserve(); // 옵저버 생성
-  }
-  //나타날 때, 사라질 때 선언될 때 값이 옵저버에 저장되고 IntersectionObserver 콜백도 실행된다
-	// 그러나 조건문을 걸어놨기 때문에 실행되진 않나?
-  //entry 는 배열로 저장된다
-  
-},{threshold: 0});
-
-function resetObserve(){
-  if(io.entry){
-    io.disconnect();
+    post(searchForm.page + 1).then(anchor);
+    
   };
-  
-  const lastEl = document.querySelector('.list-wrap')?.lastElementChild;
-  console.log(lastEl);
-  if ( lastEl !== undefined && lastEl !== null){
-    io.observe(lastEl);
-  }
-}
+},1000);
+
+
+
+const anchor = () => {
+  console.log("실행됨")
+  console.log(searchForm.beforeTop);
+  let target = document.querySelector("section.list-wrap");
+  target.scrollTo(0,searchForm.beforeTop);
+};
+
+
 
 class MovieList extends React.Component {
   constructor() {
@@ -69,7 +65,8 @@ class MovieList extends React.Component {
       'section', 
       {
         class : 'list-wrap',
-        onload : resetObserve(),
+        //onload : resetObserve(),
+        onscroll : fn,
       }, 
       movieStore.movies.map(naFilter)
     )
