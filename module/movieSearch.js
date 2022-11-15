@@ -34,7 +34,6 @@ export class MovieListWrap extends React.Component {
 const fn = _.throttle( event=>{
   let scrollSpace = event.target.scrollHeight - event.target.clientHeight;
   searchForm.beforeTop = scrollSpace - 100;
-  console.log("스크롤 중");
   if ( event.target.scrollTop === scrollSpace ) {
     searchForm.reset = true;
     post(searchForm.page + 1).then(anchor);
@@ -45,8 +44,6 @@ const fn = _.throttle( event=>{
 
 
 const anchor = () => {
-  console.log("실행됨")
-  console.log(searchForm.beforeTop);
   let target = document.querySelector("section.list-wrap");
   target.scrollTo(0,searchForm.beforeTop);
 };
