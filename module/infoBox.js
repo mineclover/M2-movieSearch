@@ -83,7 +83,7 @@ class leftImg extends React.Component {
     return React.createElement('img', {
       class : 'infoImg',
       onerror: event => {
-        event.target.src = "./img/no.png"
+        event.target.src = "https://mineclover.github.io/img/no.png"
       },
       onload : () => {
         document.querySelector('.bottom-loading').style.display = 'none'
