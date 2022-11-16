@@ -147,7 +147,7 @@ const naFilter = mv => {
       class : "simple",
       alt : `${mv.Title}의 포스터`,
       onerror: event => {
-        event.target.src = "./img/no.png"
+        event.target.src = "https://mineclover.github.io/img/no.png"
       },
       onclick: () => {
         document.querySelector('.bottom-loading').style.display = 'flex';
