@@ -5,12 +5,12 @@ import {sampleStore , movieStore ,transmission, bottomStore , searchForm } from 
 
 // 테스트 사이드
 export async function getMovies(title,page=1) {
-  const s = `&s=${title}`;
-  const y = `&y=${searchForm.year}`;
-  const p = `&page=${page}`;
-  const t = `&type=${searchForm.type}`;
+  const inputTitle = `&s=${title}`;
+  const inputYear = `&y=${searchForm.year}`;
+  const inputPage = `&page=${page}`;
+  const inputType = `&type=${searchForm.type}`;
   
-  const res = await fetch(`https://omdbapi.com/?apikey=7035c60c${s}${y}${p}${t}`);
+  const res = await fetch(`https://omdbapi.com/?apikey=7035c60c${inputTitle}${inputYear}${inputPage}${inputType}`);
   
 
   const json = await res.json();
@@ -170,7 +170,7 @@ const naFilter = mv => {
 }
 
 // article 
-const getID = async e => { 
+const getID = e => { 
   removeSelect();
   e = e.target
   if (e.tagName !== 'ARTICLE') e = e.parentElement;
