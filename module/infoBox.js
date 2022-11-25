@@ -14,9 +14,6 @@ export class infoBox extends React.Component {
   render() {
     return React.createElement('section', {
       class : 'info-box center-wrap-column',
-      onclick: event => {
-        console.log('눌림')
-      },
     },
     [
       React.createElement(pageNavBox),

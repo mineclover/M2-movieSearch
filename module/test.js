@@ -55,9 +55,14 @@ async function searchControl(key) {
 
 const post = async (toggle) => {
   
+  if (searchForm.totalResult < toggle *10 + +searchForm.pageUnit - 10 ) {
+    toggle = searchForm.totalResult - searchForm.pageUnit;
+    toggle = toggle / 10;
+    toggle = Math.ceil(toggle)+1;
+  }
+  
   if(typeof toggle != 'object' && toggle !== undefined){
     searchForm.page = toggle;
-    
   }
 
   document.querySelector('.list-loading').style.display = "flex"
@@ -133,7 +138,8 @@ const errorMsg = (msg) => {
 
 const naFilter = mv => {
 
-  const poster = mv.Poster;
+  const poster = mv.Poster === "N/A" ? "./img/no.png" : mv.Poster;
+
 
   return React.createElement('article', {
     'data-id' : mv.imdbID,

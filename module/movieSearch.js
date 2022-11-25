@@ -34,7 +34,9 @@ export class MovieListWrap extends React.Component {
 const fn = _.throttle( event=>{
   let scrollSpace = event.target.scrollHeight - event.target.clientHeight;
   searchForm.beforeTop = scrollSpace - 100;
-  if ( event.target.scrollTop === scrollSpace ) {
+  let check  = searchForm.totalResult > searchForm.page *10;
+  //console.log(check,searchForm.totalResult , searchForm.page *10 + +searchForm.pageUnit -10);
+  if ( event.target.scrollTop === scrollSpace && check) {
     searchForm.reset = true;
     post(searchForm.page + 1).then(anchor);
     

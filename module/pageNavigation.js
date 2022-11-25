@@ -169,7 +169,8 @@ class StartNumberInput extends React.Component {
           
         },
         onblur : event => {
-          setTimeout(event.target.classList.remove("focus"));
+          //setTimeout(event.target.classList.remove("focus"));
+          event.target.classList.remove("focus");
         },
 
       }, 
