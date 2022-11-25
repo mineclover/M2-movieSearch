@@ -138,7 +138,7 @@ const errorMsg = (msg) => {
 
 const naFilter = mv => {
 
-  const poster = mv.Poster === "N/A" ? "./img/no.png" : mv.Poster;
+  const poster = mv.Poster === "N/A" ? "https://mineclover.github.io/img/no.png" : mv.Poster;
 
 
   return React.createElement('article', {
